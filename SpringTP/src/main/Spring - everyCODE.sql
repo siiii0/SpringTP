@@ -101,53 +101,26 @@ CREATE TABLE `Report` (
   `processed_at` datetime DEFAULT null
 );
 
-ALTER TABLE `Question`
-ADD CONSTRAINT fk_question_Question
-FOREIGN KEY (`user_id`, `user_type`)
-REFERENCES `User` (`user_id`, `user_type`)
-ON UPDATE CASCADE;
+ALTER TABLE `Question` ADD FOREIGN KEY (`user_id`, `user_type`) REFERENCES `User` (`user_id`, `user_type`) ON UPDATE CASCADE;
 
 ALTER TABLE `Q_Language` ADD FOREIGN KEY (`q_id`) REFERENCES `Question` (`q_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `Submissions`
-ADD CONSTRAINT fk_question_Submissions
-FOREIGN KEY (`user_id`, `user_type`)
-REFERENCES `User` (`user_id`, `user_type`)
-ON UPDATE CASCADE;
+ALTER TABLE `Submissions` ADD FOREIGN KEY (`user_id`, `user_type`) REFERENCES `User` (`user_id`, `user_type`) ON UPDATE CASCADE;
 
 ALTER TABLE `Submissions` ADD FOREIGN KEY (`q_id`) REFERENCES `Question` (`q_id`) ON UPDATE CASCADE;
 
-ALTER TABLE `Board`
-ADD CONSTRAINT fk_question_Board
-FOREIGN KEY (`user_id`, `user_type`)
-REFERENCES `User` (`user_id`, `user_type`)
-ON UPDATE CASCADE
-ON DELETE CASCADE;
+ALTER TABLE `Board` ADD FOREIGN KEY (`user_id`, `user_type`) REFERENCES `User` (`user_id`, `user_type`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `BoardFiles` ADD FOREIGN KEY (`b_id`) REFERENCES `Board` (`b_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `BoardCmt` ADD FOREIGN KEY (`b_id`) REFERENCES `Board` (`b_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `BoardCmt`
-ADD CONSTRAINT fk_question_BoardCmt
-FOREIGN KEY (`user_id`, `user_type`)
-REFERENCES `User` (`user_id`, `user_type`)
-ON UPDATE CASCADE
-ON DELETE CASCADE;
+ALTER TABLE `BoardCmt` ADD FOREIGN KEY (`user_id`, `user_type`) REFERENCES `User` (`user_id`, `user_type`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `Notification`
-ADD CONSTRAINT fk_question_Notification
-FOREIGN KEY (`user_id`, `user_type`)
-REFERENCES `User` (`user_id`, `user_type`)
-ON UPDATE CASCADE
-ON DELETE CASCADE;
+ALTER TABLE `Notification` ADD FOREIGN KEY (`user_id`, `user_type`) REFERENCES `User` (`user_id`, `user_type`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `Report` ADD FOREIGN KEY (`b_id`) REFERENCES `Board` (`b_id`) ON UPDATE CASCADE;
 
 ALTER TABLE `Report` ADD FOREIGN KEY (`bc_id`) REFERENCES `BoardCmt` (`bc_id`) ON UPDATE CASCADE;
 
-ALTER TABLE `Report`
-ADD CONSTRAINT fk_question_Report
-FOREIGN KEY (`user_id`, `user_type`)
-REFERENCES `User` (`user_id`, `user_type`)
-ON UPDATE CASCADE;
+ALTER TABLE `Report` ADD FOREIGN KEY (`user_id`, `user_type`) REFERENCES `User` (`user_id`, `user_type`) ON UPDATE CASCADE;
