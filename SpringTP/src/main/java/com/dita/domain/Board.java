@@ -7,14 +7,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoardCmtVO {
-	private int bc_id;
+public class Board {
 	private int b_id;
-	private String bc_content;
-	private String answered_at;
+	private String b_type;
+	private String b_title;
+	private String b_content;
 	private String user_id;
 	private String user_type;
-	private int bc_likes;
-	private int bc_ref;
-	private int bc_comment;
+	private String created_at;
+	private int b_comments;
+	private int b_views;
+	private int b_likes;
+	private String b_isPinned;
 }

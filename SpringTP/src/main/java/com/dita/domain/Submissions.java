@@ -7,14 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NotificationVO {
-	private int n_id;
-	private String n_type;
-	private String n_title;
-	private String n_content;
-	private String n_url;
+public class Submissions {
 	private String user_id;
 	private String user_type;
-	private String n_isRead;
-	private String created_at;
+	private int q_id;
+	private String s_language;
+	private String s_code;
+	private String s_isCorrect;
+	private int s_runTime;
+	private String submitted_at;
 }

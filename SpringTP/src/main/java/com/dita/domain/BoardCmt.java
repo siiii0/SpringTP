@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubmissionsVO {
+public class BoardCmt {
+	private int bc_id;
+	private int b_id;
+	private String bc_content;
+	private String answered_at;
 	private String user_id;
 	private String user_type;
-	private int q_id;
-	private String s_language;
-	private String s_code;
-	private String s_isCorrect;
-	private int s_runTime;
-	private String submitted_at;
+	private int bc_likes;
+	private int bc_ref;
+	private int bc_comment;
 }

@@ -30,7 +30,8 @@ CREATE TABLE `Question` (
 
 CREATE TABLE `Q_Language` (
   `q_id` int,
-  `q_language` varchar(20) NOT NULL
+  `q_language` varchar(20) NOT NULL,
+  `q_answer` text NOT NULL
 );
 
 CREATE TABLE `Submissions` (

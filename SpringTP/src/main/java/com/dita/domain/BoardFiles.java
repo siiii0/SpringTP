@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoardFilesVO {
+public class BoardFiles {
 	private int bf_id;
 	private int b_id;
 	private String bf_files;

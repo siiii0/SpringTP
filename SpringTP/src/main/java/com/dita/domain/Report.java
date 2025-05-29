@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReportVO {
+public class Report {
 	private int r_id;
 	private int b_id;
 	private int bc_id;
