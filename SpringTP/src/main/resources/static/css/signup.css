@@ -1,0 +1,102 @@
+/* signup.css */
+
+body {
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+label[for="username"]::before {
+    content: "* ";
+    color: red;
+}
+
+label[for="password"]::before,
+label[for="confirm-password"]::before,
+label[for="name"]::before {
+    content: "* ";
+    color: red;
+}
+
+input {
+    padding: 12px 15px;
+    border: 1px solid #dbe1ea;
+    border-radius: 12px;
+    background-color: #f9fbff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: #007bff;
+}
+
+.login-btn {
+    margin-top: 30px;
+    padding: 14px 0;
+    background-color: #000;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #333;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 13px;
+    color: #aaa;
+}
+
+/* 강조 텍스트 스타일 */
+.login-box::before {
+	color: red;
+    font-size: 13px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 15px;
+}

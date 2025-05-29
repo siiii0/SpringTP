@@ -10,10 +10,8 @@
 <body>
     <div class="container">
         <!-- 헤더 Fragment 삽입 -->
-        <header th:replace="fragments/header :: header"></header>
-
+		<header th:replace="fragments/header :: header"></header>
         <div class="login-box">
-            <h1 class="logo">every<br><strong>CODE</strong></h1>
 
             <form th:action="@{/login}" method="post">
                 <label for="username">아이디</label>
@@ -32,13 +30,18 @@
             </form>
 
             <hr class="divider">
-            <p class="social-title">소셜 로그인</p>
 
             <div class="social-login">
-                <button class="google">구글 계정으로 로그인</button>
-                <button class="kakao">카카오 계정으로 로그인</button>
-                <button class="naver">네이버 계정으로 로그인</button>
-            </div>
+			    <button class="social-btn google">
+			        <img src="/images/Google.png" alt="Google 로고">
+			        구글 계정으로 로그인
+			    </button>
+			    <button class="social-btn kakao">
+			        <img src="/images/Kakao.png" alt="Kakao 로고">
+			        카카오 계정으로 로그인
+			    </button>
+			</div>
+
         </div>
 
         <footer>
