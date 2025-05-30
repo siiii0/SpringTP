@@ -3,16 +3,40 @@
     padding: 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center; /* 로고를 수평 중앙 정렬 */
+    position: relative; /* back-btn을 절대 위치로 배치할 수 있게 함 */
 }
 
 .back-btn {
-    font-size: 20px;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    font-size: 24px;
     background: none;
     border: none;
     cursor: pointer;
 }
 
 .logo-img {
-    height: 30px;
+    height: 100px; /* 로고 크기 */
+    bottom: 50px;
+}
+
+.login-box label {
+    display: block;
+    text-align: left;         /* 왼쪽 정렬 */
+    margin-bottom: 5px;       /* 라벨과 input 사이 간격 */
+    font-weight: bold;        /* (선택) 라벨 강조 */
+    padding-left: 5px;        /* input과 살짝 들여쓰기 정렬 맞춤 */
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    box-sizing: border-box;
 }

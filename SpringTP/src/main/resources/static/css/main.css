@@ -1,0 +1,158 @@
+body {
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #fff;
+    color: #111;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.logo .bold {
+    font-weight: 800;
+}
+
+.nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-section button {
+    background: none;
+    border: none;
+    color: #999;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.search-icon {
+    font-size: 18px;
+}
+
+.banner {
+    background: #000;
+    color: #fff;
+    padding: 40px;
+}
+
+.banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner .text {
+    max-width: 60%;
+}
+
+.banner .tag {
+    background: #fff;
+    color: #000;
+    font-size: 12px;
+    padding: 4px 8px;
+    display: inline-block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.banner h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.banner p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.dots {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.banner-img {
+    height: 200px;
+}
+
+.jobs {
+    padding: 40px;
+    background: #f9f9f9;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    margin: 0;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 48%;
+}
+
+.card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 16px;
+}
+
+.card-content h4 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.card-content p {
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.card-content button {
+    margin-top: 10px;
+    background: #eee;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+    color: #999;
+}
