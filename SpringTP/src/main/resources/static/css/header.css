@@ -1,33 +1,100 @@
 .header {
     width: 100%;
+    height: 100px; /* 명확한 높이 설정 */
     padding: 20px;
     display: flex;
     align-items: center;
-    justify-content: center; /* 로고를 수평 중앙 정렬 */
-    position: relative; /* back-btn을 절대 위치로 배치할 수 있게 함 */
+    justify-content: center;
+    position: relative;
+    background-color: #fff;
+    border-bottom: 1px solid #eaeaea;
+    box-sizing: border-box;
+    z-index: 10;
 }
 
+/* ← 뒤로가기 버튼 */
 .back-btn {
     position: absolute;
     top: 0px;
     left: 20px;
-    font-size: 24px;
     background: none;
     border: none;
+    padding: 0;
     cursor: pointer;
 }
 
-.logo-img {
-    height: 100px; /* 로고 크기 */
-    bottom: 50px;
+/* 이미지 크기 조절 */
+.back-icon {
+    width: 24px;
+    height: 24px;
 }
 
+.logo-link {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+}
+
+.logo-img {
+    height: 100px;
+    display: block;
+}
+
+/* 오른쪽 상단 사용자 정보 또는 로그인 버튼 공통 컨테이너 */
+.user-section {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 로그인 버튼 (비로그인 상태) */
+.login-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 사용자 이름 (로그인 상태) */
+.username {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* 사용자 프로필 이미지 */
+.user-profile {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+/* 로그아웃 버튼 (로그인 상태) */
+.logout-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 로그인 폼 라벨과 인풋 (로그인 페이지 재사용 시 필요) */
 .login-box label {
     display: block;
-    text-align: left;         /* 왼쪽 정렬 */
-    margin-bottom: 5px;       /* 라벨과 input 사이 간격 */
-    font-weight: bold;        /* (선택) 라벨 강조 */
-    padding-left: 5px;        /* input과 살짝 들여쓰기 정렬 맞춤 */
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    padding-left: 5px;
 }
 
 .login-box input {

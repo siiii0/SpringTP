@@ -5,22 +5,13 @@
     <title>everyCODE 메인</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/nav.css">
    
 </head>
 <body>
-    <header class="header">
-        <div class="logo">every<br><span class="bold">CODE</span></div>
-        <nav class="nav">
-            <a href="#">코딩 테스트</a>
-            <a href="#">게시판</a>
-            <a href="#">랭킹</a>
-        </nav>
-        <div class="user-section">
-            <span>user01</span>
-            <button>로그아웃</button>
-            <div class="search-icon">🔍</div>
-        </div>
-    </header>
+<header th:replace="fragments/header :: header"></header>
+
+<nav th:replace="fragments/nav :: nav"></nav>
 
     <section class="banner">
         <div class="banner-content">
@@ -61,8 +52,10 @@
         </div>
     </section>
 
-    <footer>
-        <p>2025©everyCODE</p>
-    </footer>
+        <div th:replace="fragments/footer :: footer"></div>
+        
+        <script src="/js/nav.js" defer></script>
+       
+
 </body>
 </html>

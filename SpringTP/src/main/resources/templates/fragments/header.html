@@ -1,6 +1,23 @@
-<!-- src/main/resources/templates/fragments/header.html -->
 <div class="header" th:fragment="header">
-    <button class="back-btn" onclick="history.back()">←</button>
-    <img src="/images/logo_CODE.png" alt="everyCODE 로고" class="logo-img">
-</div>
+    <!-- 왼쪽 상단: 뒤로가기 버튼 -->
+    <button class="back-btn" onclick="history.back()">
+        <img src="/images/btn_prev.png" alt="뒤로가기" class="back-icon">
+    </button>
 
+    <!-- 중앙: 로고 클릭 시 /main 이동 -->
+    <a href="/main" class="logo-link">
+        <img src="/images/logo_CODE.png" alt="everyCODE 로고" class="logo-img">
+    </a>
+
+    <!-- 오른쪽 상단: 로그인 안 된 상태 (user가 없을 때) -->
+    <div class="user-section" th:if="${user == null}">
+        <button class="login-btn" onclick="location.href='/login'">로그인</button>
+    </div>
+
+    <!-- 오른쪽 상단: 로그인 된 상태 (user가 있을 때) -->
+    <div class="user-section" th:if="${user?.username != null}">
+        <span class="username" th:text="${user?.username}">user01</span>
+        <img class="user-profile" src="/images/profile.png" alt="프로필 이미지">
+        <button class="logout-btn" onclick="location.href='/logout'">로그아웃</button>
+    </div>
+</div>
