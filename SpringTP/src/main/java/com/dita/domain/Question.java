@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Question {
 	private int q_id;
+	private int q_num;
 	private String q_title;
 	private String q_content;
 	private String q_difficulty;

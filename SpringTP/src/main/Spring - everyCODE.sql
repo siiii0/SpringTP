@@ -16,6 +16,7 @@ CREATE TABLE `User` (
 
 CREATE TABLE `Question` (
   `q_id` int PRIMARY KEY AUTO_INCREMENT,
+  `q_num` int,
   `q_title` varchar(50) NOT NULL,
   `q_content` text NOT NULL,
   `q_difficulty` varchar(10),
