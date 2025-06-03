@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>기본문제 - everyCODE</title>
+  <link rel="stylesheet" href="/css/basic_Q.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+  <header th:replace="fragments/header :: header"></header>
+  <nav th:replace="fragments/nav :: nav"></nav>
+
+  <main>
+    <h2 class="page-title">기본 문제</h2>
+
+    <div class="filters">
+      <select>
+        <option>유형</option>
+      </select>
+      <select>
+        <option>난이도</option>
+      </select>
+      <select>
+        <option>언어</option>
+      </select>
+
+      <input type="text" placeholder="문제 제목 검색">
+      <button class="search-btn">🔍</button>
+    </div>
+
+    <div class="tags">
+      <span class="tag">쉬움</span>
+      <span class="tag">JAVA</span>
+      <span class="reset">초기화 ⟲</span>
+    </div>
+
+    <table class="question-table">
+      <thead>
+        <tr>
+          <th>제목</th>
+          <th>난이도</th>
+          <th>완료한 사람</th>
+          <th>정답률</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>나머지 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
+          <td class="level">Lv. 0</td>
+          <td>77,922명</td>
+          <td>91%</td>
+        </tr>
+        <tr>
+          <td><strong>두 수의 차 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
+          <td class="level">Lv. 1</td>
+          <td>92,204명</td>
+          <td>91%</td>
+        </tr>
+        <tr>
+          <td><strong>두 수의 차 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
+          <td class="level">Lv. 4</td>
+          <td>92,204명</td>
+          <td>91%</td>
+        </tr>
+        <tr>
+          <td><strong>두 수의 차 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
+          <td class="level">Lv. 1</td>
+          <td>92,204명</td>
+          <td>91%</td>
+        </tr>
+        <tr>
+          <td><strong>두 수의 차 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
+          <td class="level">Lv. 3</td>
+          <td>92,204명</td>
+          <td>91%</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <div th:replace="fragments/footer :: footer"></div>
+  <script src="/js/nav.js" defer></script>
+  
+</body>
+</html>

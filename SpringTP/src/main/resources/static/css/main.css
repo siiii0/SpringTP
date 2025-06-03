@@ -35,8 +35,10 @@ button {
 }
 
 .nav a {
-    font-weight: 500;
-    font-size: 16px;
+	font-weight: 500;
+	font-size: 16px;
+	text-decoration: none;
+	color: inherit;
 }
 
 .user-section {
@@ -97,9 +99,64 @@ button {
     object-fit: contain;
 }
 
-/* 채용 프로그램 영역 */
+/* 슬라이더 배너 추가 스타일 */
+.banner-slider {
+    position: relative;
+    overflow: hidden;
+    background-color: #111;
+    color: white;
+    padding: 48px 0;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    padding: 0 48px;
+}
+
+.slide img {
+    width: 300px;
+    object-fit: contain;
+}
+
+.slide .text {
+    max-width: 500px;
+}
+
+.banner-slider .dots {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.banner-slider .dot {
+    width: 10px;
+    height: 10px;
+    background: #666;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.banner-slider .dot.active {
+    background: #fff;
+}
+
+/* 프로그램 영역 */
 .jobs {
-    padding: 48px;
+    padding: 45px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -133,7 +190,7 @@ button {
 .card img {
     width: 100%;
     display: block;
-    height: 180px;
+    height: 250px;
     object-fit: cover;
 }
 
