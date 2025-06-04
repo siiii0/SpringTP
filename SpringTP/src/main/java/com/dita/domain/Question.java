@@ -1,23 +1,62 @@
 package com.dita.domain;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "question")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Question {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int q_id;
+	
+	@Column(unique = true, nullable = true)
 	private int q_num;
+	
+	@Column(columnDefinition = "text", nullable = false)
 	private String q_title;
+	
+	@Column(columnDefinition = "text", nullable = false)
 	private String q_content;
+	
+	@Column(columnDefinition = "varchar(10)", nullable = true)
 	private String q_difficulty;
-	private int q_crt_cnt;
-	private int q_submits;
-	private double q_crt_per;
-	private int q_recommend;
-	private String user_id;
-	private String user_type;
-	private String created_at;
+	
+	@Column(nullable = true)
+	private int q_crt_cnt = 0;
+	
+	@Column(nullable = true)
+	private int q_submits = 0;
+	
+	@Column(nullable = true)
+	private double q_crt_per = 0;
+	
+	@Column(nullable = true)
+	private int q_recommend = 0;
+	
+	@ManyToOne
+	   @JoinColumns({
+	       @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+	       @JoinColumn(name = "user_type", referencedColumnName = "user_type")
+	   })
+	private User user;
+	
+	@Column(nullable = false)
+	private LocalDateTime created_at;
 }

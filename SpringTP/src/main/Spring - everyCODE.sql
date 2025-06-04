@@ -12,12 +12,12 @@ CREATE TABLE `User` (
   `user_wd_reason` text DEFAULT null,
   `user_wd_date` datetime DEFAULT null,
   PRIMARY KEY (`user_id`, `user_type`)
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 CREATE TABLE `Question` (
   `q_id` int PRIMARY KEY AUTO_INCREMENT,
-  `q_num` int,
-  `q_title` varchar(50) NOT NULL,
+  `q_num` INT UNIQUE,
+  `q_title` text NOT NULL,
   `q_content` text NOT NULL,
   `q_difficulty` varchar(10),
   `q_crt_cnt` int DEFAULT 0,
@@ -27,13 +27,13 @@ CREATE TABLE `Question` (
   `user_id` varchar(30),
   `user_type` varchar(10),
   `created_at` datetime NOT NULL
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 CREATE TABLE `Q_Language` (
-  `q_id` int,
+  `q_num` INT,
   `q_language` varchar(20) NOT NULL,
   `q_answer` text NOT NULL
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 CREATE TABLE `Submissions` (
   `user_id` varchar(30) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `Submissions` (
   `s_isCorrect` varchar(1),
   `s_runTime` int,
   `submitted_at` datetime NOT NULL
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 CREATE TABLE `Board` (
   `b_id` int PRIMARY KEY AUTO_INCREMENT,
@@ -58,13 +58,13 @@ CREATE TABLE `Board` (
   `b_views` int DEFAULT 0,
   `b_likes` int DEFAULT 0,
   `b_isPinned` varchar(5) DEFAULT 'N'
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 CREATE TABLE `BoardFiles` (
   `bf_id` int PRIMARY KEY AUTO_INCREMENT,
   `b_id` int,
   `bf_files` text NOT NULL
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 CREATE TABLE `BoardCmt` (
   `bc_id` int PRIMARY KEY AUTO_INCREMENT,
@@ -76,7 +76,7 @@ CREATE TABLE `BoardCmt` (
   `bc_likes` int DEFAULT 0,
   `bc_ref` int,
   `bc_comment` int DEFAULT 0
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 CREATE TABLE `Notification` (
   `n_id` int PRIMARY KEY AUTO_INCREMENT,
@@ -88,7 +88,7 @@ CREATE TABLE `Notification` (
   `user_type` varchar(10) NOT NULL,
   `n_isRead` varchar(5) DEFAULT 'N',
   `created_at` datetime NOT NULL
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 CREATE TABLE `Report` (
   `r_id` int PRIMARY KEY AUTO_INCREMENT,
@@ -101,11 +101,11 @@ CREATE TABLE `Report` (
   `reported_at` datetime NOT NULL,
   `r_isProc` varchar(5) DEFAULT 'N',
   `processed_at` datetime DEFAULT null
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 ALTER TABLE `Question` ADD FOREIGN KEY (`user_id`, `user_type`) REFERENCES `User` (`user_id`, `user_type`) ON UPDATE CASCADE;
 
-ALTER TABLE `Q_Language` ADD FOREIGN KEY (`q_id`) REFERENCES `Question` (`q_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Q_Language` ADD FOREIGN KEY (`q_num`) REFERENCES `Question` (`q_num`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `Submissions` ADD FOREIGN KEY (`user_id`, `user_type`) REFERENCES `User` (`user_id`, `user_type`) ON UPDATE CASCADE;
 
