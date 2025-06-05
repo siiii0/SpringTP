@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>기본문제 - everyCODE</title>
+  <link rel="stylesheet" href="/css/solve_Q.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/nav.css">
+
+  <!-- CodeMirror CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/eclipse.min.css">
+</head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<nav th:replace="fragments/nav :: nav"></nav>
+
+<main class="horizontal-split">
+	<section class="problem-section left-pane">
+    <div id="problemView">
+    <h2>■ 나머지 구하기</h2>
+    <div class="description">
+      <p>정수 <b>num1</b>, <b>num2</b>가 매개변수로 주어질 때, <b>num1</b>을 <b>num2</b>로 나눈 나머지를 return 하도록 solution 함수를 완성해주세요.</p>
+
+      <h4>제한사항</h4>
+      <ul>
+        <li>0 &lt; num1 ≤ 100</li>
+        <li>0 &lt; num2 ≤ 100</li>
+      </ul>
+
+      <h4>입출력 예</h4>
+      <table>
+        <thead><tr><th>num1</th><th>num2</th><th>result</th></tr></thead>
+        <tbody>
+          <tr><td>3</td><td>2</td><td>1</td></tr>
+          <tr><td>10</td><td>5</td><td>0</td></tr>
+        </tbody>
+      </table>
+
+      <h4>입출력 예 설명</h4>
+      <p><b>num1</b>이 3, <b>num2</b>가 2이므로 3을 2로 나눈 나머지 1을 return 합니다.</p>
+      <p><b>num1</b>이 10, <b>num2</b>가 5이므로 10을 5로 나눈 나머지 0을 return 합니다.</p>
+    </div>
+    </div>
+    
+    <div id="submissionView" style="display: none;">
+	  <div class="submission-header">
+	    <span>2개의 제출</span>
+	    <button class="refresh-btn">새로고침</button>
+	  </div>
+	
+	  <table class="submission-table">
+	    <thead>
+	      <tr>
+	        <th></th>
+	        <th>제출일시</th>
+	        <th>언어</th>
+	        <th>채점 내역</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr class="submission-row">
+	        <td class="toggle-arrow">▶</td>
+	        <td>2025-05-15 22:36:12</td>
+	        <td>Java</td>
+	        <td><span class="status-wrong">오답</span> <span class="score">21.4 / 100</span></td>
+	      </tr>
+	      <tr class="submission-code-row" style="display: none;">
+			  <td colspan="4">
+			    <pre class="submitted-code">
+			class Solution {
+			  public int solution(int num1, int num2) {
+			    return num1 % num2;
+			  }
+			}
+			    </pre>
+			  </td>
+			</tr>
+	      <tr class="submission-row">
+	        <td class="toggle-arrow">▶</td>
+	        <td>2025-05-15 22:25:45</td>
+	        <td>Java</td>
+	        <td><span class="status-correct">정답</span> <span class="score">100 / 100</span></td>
+	      </tr>
+	      <tr class="submission-code-row" style="display: none;">
+			  <td colspan="4">
+			    <pre class="submitted-code">
+			class Solution {
+			  public int solution(int num1, int num2) {
+			    return num1 % num2;
+			  }
+			}
+			    </pre>
+			  </td>
+			</tr>
+	    </tbody>
+	  </table>
+	</div>
+
+  </section>
+
+  <div class="splitter vertical"></div>
+
+  <section class="code-section right-pane">
+    <div class="vertical-split">
+      <div class="top-pane">
+        <div class="code-header">
+		  <button id="toggleViewBtn">제출 내역 보기 ⟷</button>
+		  <select id="languageSelector">
+		    <option value="C">C</option>
+		    <option value="JAVA">JAVA</option>
+		    <option value="Python">Python</option>
+		  </select>
+		</div>
+
+        <!-- CodeMirror 에디터 -->
+        <textarea id="codeEditor" spellcheck="false">
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+
+int solution(int num1, int num2) {
+  int answer = -1;
+  return answer;
+}
+        </textarea>
+      </div>
+
+      <div class="splitter horizontal"></div>
+
+      <div class="bottom-pane">
+        <div class="result-box">실행 결과가 여기에 표시됩니다.</div>
+        <div class="code-buttons">
+          <button>코드 실행</button>
+          <button>임시 저장</button>
+          <button class="submit-btn">제출하기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<!-- 필수 CodeMirror JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+
+<!-- 프로젝트 JS 연동 -->
+<script src="/js/nav.js" defer></script>
+<script src="/js/solve_Q.js" defer></script>
+</body>
+</html>
