@@ -5,7 +5,6 @@ const currentFilter = {
   sort: null,
 };
 
-// 🔽 여기에 추가
 let allRowsOriginal = [];
 
 function removeTag(element) {
@@ -46,7 +45,6 @@ function clearAllTags() {
   applyFilterAndSort();
 }
 
-// ✅ 태그 자동 생성 및 분류 실행
 function handleSelectChange(selectElement) {
   const value = selectElement.value;
   const label = selectElement.options[0].text;
@@ -149,5 +147,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const table = document.querySelector(".question-table tbody");
   if (table) {
     allRowsOriginal = Array.from(table.querySelectorAll("tr"));
+
+    // 클릭 이벤트 추가
+    allRowsOriginal.forEach((row) => {
+      row.classList.add("clickable-row");
+      row.addEventListener("click", () => {
+        const title = row.querySelector("strong")?.innerText.trim();
+        if (!title) return;
+
+        // 문제 제목 기반으로 링크 이동
+        const slug = encodeURIComponent(title.replace(/\s+/g, "_"));
+        window.location.href = `/codingtest/solve_Q?title=${slug}`;
+      });
+    });
   }
 });
