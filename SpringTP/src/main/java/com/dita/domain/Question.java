@@ -13,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -49,6 +50,7 @@ public class Question {
 	
 	@Column(nullable = true)
 	private int q_recommend = 0;
+	
 	
 	@ManyToOne
 	   @JoinColumns({
