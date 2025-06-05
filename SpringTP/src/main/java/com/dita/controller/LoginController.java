@@ -9,10 +9,10 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 	
-    @GetMapping(value = "/login")
-    public void loginPage(@RequestParam String id, @RequestParam String pwd, HttpSession session) {
-    	
-    }
+	@GetMapping("/login")
+	public String loginPage() {
+	    return "login"; // templates/login.html 렌더링
+	}
     
 }
 

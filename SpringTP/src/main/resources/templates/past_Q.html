@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>기출문제 - everyCODE</title>
+  <link rel="stylesheet" href="/css/past_Q.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+  <header th:replace="fragments/header :: header"></header>
+  <nav th:replace="fragments/nav :: nav"></nav>
+
+  <main>
+    <h2 class="page-title">기출 문제</h2>
+
+    <div class="filters">
+      <select id="sortSelect" onchange="handleSelectChange(this)">
+        <option selected>정렬 기준</option>
+        <option>정답률 높은 순</option>
+        <option>정답률 낮은 순</option>
+        <option>완료한 사람 많은 순</option>
+        <option>최신 등록 순</option>
+      </select>
+
+      <select id="levelSelect" onchange="handleSelectChange(this)">
+        <option selected>난이도</option>
+        <option>Lv. 0</option>
+        <option>Lv. 1</option>
+        <option>Lv. 2</option>
+        <option>Lv. 3</option>
+        <option>Lv. 4</option>
+        <option>Lv. 5</option>
+      </select>
+
+      <select id="languageSelect" onchange="handleSelectChange(this)">
+        <option selected>언어</option>
+        <option>Python</option>
+        <option>JAVA</option>
+        <option>C</option>
+      </select>
+
+      <input type="text" placeholder="문제 제목 검색">
+      <button class="search-btn">🔍</button>
+    </div>
+
+    <div class="tags" id="tagContainer">
+      <span class="reset" onclick="clearAllTags()">초기화 ⟲</span>
+    </div>
+
+    <table class="question-table">
+      <thead>
+        <tr>
+          <th>제목</th>
+          <th>난이도</th>
+          <th>완료한 사람</th>
+          <th>정답률</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>표현 가능한 이진트리</strong><br><span class="sub">2023 카카오 블라인드 채용</span></td>
+          <td class="level">Lv. 3</td>
+          <td>5,002명</td>
+          <td>54%</td>
+        </tr>
+        <tr>
+          <td><strong>미로 주행 테스트</strong><br><span class="sub">2023 현대모비스 알고리즘 경진대회</span></td>
+          <td class="level">Lv. 5</td>
+          <td>521명</td>
+          <td>6%</td>
+        </tr>
+        <tr>
+          <td><strong>빠른 이동</strong><br><span class="sub">2023 현대모비스 알고리즘 경진대회</span></td>
+          <td class="level">Lv. 5</td>
+          <td>21명</td>
+          <td>2%</td>
+        </tr>
+        <tr>
+          <td><strong>미로 탈출 명령어</strong><br><span class="sub">2023 카카오 블라인드 채용</span></td>
+          <td class="level">Lv. 3</td>
+          <td>4,202명</td>
+          <td>36%</td>
+        </tr>
+        <tr>
+          <td><strong>도넛과 막대 그래프</strong><br><span class="sub">2024 카카오 겨울 인턴십</span></td>
+          <td class="level">Lv. 2</td>
+          <td>5,016명</td>
+          <td>26%</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <div th:replace="fragments/footer :: footer"></div>
+  <script src="/js/nav.js" defer></script>
+  <script src="/js/past_Q.js" defer></script>
+</body>
+</html>
