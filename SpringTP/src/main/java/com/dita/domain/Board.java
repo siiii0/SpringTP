@@ -1,22 +1,61 @@
 package com.dita.domain;
 
+import java.time.LocalDateTime;
+
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "board")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Board {
-	private int b_id;
-	private String b_type;
-	private String b_title;
-	private String b_content;
-	private String user_id;
-	private String user_type;
-	private String created_at;
-	private int b_comments;
-	private int b_views;
-	private int b_likes;
-	private String b_isPinned;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int b_id;
+    
+    @Column(columnDefinition = "varchar(20)", nullable = false)
+    private String b_type;
+    
+    @Column(columnDefinition = "varchar(50)", nullable = false)
+    private String b_title;
+    
+    @Column(columnDefinition = "text", nullable = false)
+    private String b_content;
+    
+    @ManyToOne
+    @JoinColumns({
+        @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+        @JoinColumn(name = "user_type", referencedColumnName = "user_type")
+    })
+    private User user;
+    
+    @Column(nullable = false)
+    private LocalDateTime created_at;
+    
+    @Column(nullable = true)
+    private Integer b_comments = 0;
+    
+    @Column(nullable = true)
+    private Integer b_views = 0;
+    
+    @Column(nullable = true)
+    private Integer b_likes = 0;
+    
+    @Column(columnDefinition = "varchar(5) default 'N'", nullable = true)
+    private String b_isPinned;
 }
