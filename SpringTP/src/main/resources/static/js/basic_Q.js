@@ -5,7 +5,6 @@ const currentFilter = {
   sort: null,
 };
 
-// 🔽 여기에 추가
 let allRowsOriginal = [];
 
 function removeTag(element) {
@@ -46,7 +45,6 @@ function clearAllTags() {
   applyFilterAndSort();
 }
 
-// ✅ 태그 자동 생성 및 분류 실행
 function handleSelectChange(selectElement) {
   const value = selectElement.value;
   const label = selectElement.options[0].text;
@@ -149,5 +147,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const table = document.querySelector(".question-table tbody");
   if (table) {
     allRowsOriginal = Array.from(table.querySelectorAll("tr"));
+
+    allRowsOriginal.forEach((row) => {
+      row.classList.add("clickable-row");
+      row.addEventListener("click", () => {
+        const title = row.querySelector("strong")?.innerText.trim();
+        if (!title) return;
+
+        const slug = encodeURIComponent(title.replace(/\s+/g, "_"));
+        window.location.href = `/codingtest/solve_Q?title=${slug}`;
+      });
+    });
   }
 });

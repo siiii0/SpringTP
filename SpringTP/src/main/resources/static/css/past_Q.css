@@ -29,16 +29,15 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
-/* 공통 select 드롭다운 커스텀 */
 .filters select {
-  appearance: none; /* 기본 화살표 제거 */
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 12px;
-  padding-right: 32px; /* 아이콘 공간 확보 */
+  padding-right: 32px;
 }
 
 .search-btn {
@@ -108,6 +107,15 @@ body {
 .question-table .level {
   color: #2a88e6;
   font-weight: bold;
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.clickable-row:hover {
+  background-color: #f5f7fa;
 }
 
 footer {

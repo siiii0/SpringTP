@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>글 작성 - 자유게시판</title>
+<link rel="stylesheet" href="/css/write.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+	<header th:replace="fragments/header :: header"></header>
+	<nav th:replace="fragments/nav :: nav"></nav>
+
+	<main>
+		<h2 class="page-title">자유게시판</h2>
+
+		<form id="postForm">
+			<label for="title">제목 *</label> <input type="text" id="title"
+				name="title" placeholder="30자 이내로 입력해주세요." maxlength="30" required>
+
+			<label for="content">내용 *</label>
+			<textarea id="content" name="content" placeholder="내용을 입력해주세요."
+				required></textarea>
+
+			<label>사진 첨부</label>
+			<div class="image-upload-wrapper">
+				<div id="imagePreviewContainer" class="preview-container"></div>
+
+				<label class="image-upload add-box" id="addImageBox"> <span
+					class="plus-icon">+</span> <input type="file" id="imageInput"
+					accept="image/*" multiple>
+				</label>
+			</div>
+
+			<button type="submit" class="submit-btn">작성하기</button>
+		</form>
+	</main>
+
+	<div th:replace="fragments/footer :: footer"></div>
+	<script src="/js/nav.js" defer></script>
+	<script src="/js/write.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+/* error_write.css */
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #fff;
+  color: #222;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 32px;
+}
+
+form {
+  width: 90%;
+  max-width: 650px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.problem-select-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+#question {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+#questionModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#questionModal .modal-content {
+  background: #fff;
+  padding: 32px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+}
+
+#questionModal h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#searchQuestionInput {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 14px;
+  border: 1.5px solid #000;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+#questionList {
+  list-style: none;
+  padding-left: 0;
+  width: 100%;
+  max-width: 420px;
+}
+
+#questionList li {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  text-align: left;
+}
+
+#questionList li:hover {
+  background-color: #f4f4f4;
+}
+
+#findQuestionBtn {
+  padding: 10px 16px;
+  margin-left: 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#findQuestionBtn:hover {
+  background-color: #333;
+}
+
+.modal-content button {
+  margin-top: 24px;
+  padding: 10px 16px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+select {
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9fcff;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' width='16' height='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 50 L70 110 L130 50' stroke='%23666' stroke-width='20' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+}
+
+select:invalid {
+  color: #999;
+}
+
+select option {
+  color: #000;
+}
+
+select option:disabled {
+  color: #999;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9fcff;
+}
+
+textarea {
+  height: 180px;
+  resize: vertical;
+}
+
+.image-upload-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.preview-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.preview-container img {
+  width: 115px;
+  height: 115px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.image-upload.add-box {
+  width: 115px;
+  height: 115px;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  background-color: #f9fcff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.image-upload input[type="file"] {
+  display: none; 
+}
+
+.image-upload label {
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.plus-icon {
+  font-size: 32px;
+  color: #666;
+}
+
+.submit-btn {
+  align-self: center;
+  padding: 10px 24px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 12px;
+  color: #999;
+  border-top: 1px solid #eee;
+  margin-top: 48px;
+}
