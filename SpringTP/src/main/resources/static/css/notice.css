@@ -52,6 +52,23 @@ body {
   cursor: pointer;
 }
 
+.pinned-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 20px;
+  width: 80%;
+  border-bottom: 2px solid #ccc;
+}
+
+.pinned-list .post-item {
+  background-color: #f5f7fb;
+  border-bottom: 1px solid #ddd;
+}
+
+.pinned .post-title strong::before {
+  content: "📌 ";
+}
+
 .post-list {
   list-style: none;
   padding: 0;
