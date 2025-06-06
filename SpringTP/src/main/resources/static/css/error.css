@@ -39,44 +39,8 @@ body {
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   cursor: pointer;
-}
-
-.write-btn {
-  background-color: black;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.filters input[type="text"] {
-  padding: 8px 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-}
-
-.search-btn {
-  padding: 8px 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
 }
 
 .write-btn {
@@ -114,6 +78,12 @@ body {
   align-items: center;
 }
 
+.post-title .level {
+  font-size: 13px;
+  color: #2a88e6;
+  font-weight: normal;
+}
+
 .post-title .new-label {
   font-size: 12px;
   color: white;
@@ -138,6 +108,13 @@ body {
 
 .post-meta .info {
   margin-left: auto;
+}
+
+.post-meta .tag {
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 11px;
 }
 
 .pagination {
@@ -170,4 +147,3 @@ footer {
   border-top: 1px solid #eee;
   margin-top: 48px;
 }
-

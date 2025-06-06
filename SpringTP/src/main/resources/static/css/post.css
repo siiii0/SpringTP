@@ -130,6 +130,31 @@ body {
   white-space: pre-wrap;
 }
 
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.comment-author-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comment-profile-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-time {
+  font-size: 12px;
+  color: #888;
+}
+
 .comment-box {
   margin: 24px auto;
   max-width: 800px;
@@ -175,25 +200,25 @@ body {
   margin: 0;
 }
 
-.back-to-list {
-  max-width: 800px;
-  margin: 32px auto 64px;
-  text-align: right;
+.list-button-wrap {
+  text-align: center;
+  margin: 40px 0;
 }
 
-.back-btn {
-  display: inline-block;
-  padding: 8px 16px;
-  border: 1px solid #ccc;
+.list-btn {
+  background: black;
+  color: white;
+  border: none;
+  padding: 10px 16px;
   border-radius: 8px;
+  cursor: pointer;
   text-decoration: none;
-  color: #333;
+  display: inline-block;
   font-size: 14px;
-  transition: background 0.2s;
 }
 
-.back-btn:hover {
-  background: #f7f7f7;
+.list-btn:hover {
+  background-color: #333;
 }
 
 footer {

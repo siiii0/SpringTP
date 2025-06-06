@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,9 +37,31 @@ public class BoardController {
         return "board/error";
     }
     
+ // 오류 제보 작성 페이지
+    @GetMapping("/error/write")
+    public String showErrorWritePage() {
+        return "board/error_write";
+    }
+    
     @GetMapping("/write")
     public String showWritePage(Model model) {
         return "board/write";
+    }
+    
+    // 문제 Q&A 작성 폼
+    @GetMapping("/qna/write")
+    public String showQnaWritePage(Model model) {
+        return "board/qna_write"; // templates/board/qna_write.html
+    }
+
+    // 문제 Q&A 작성 처리
+    @PostMapping("/qna/write")
+    public String submitQnaWrite(@RequestParam String category,
+                                  @RequestParam String title,
+                                  @RequestParam String content,
+                                  Model model) {
+        System.out.println("Q&A 저장됨: " + title);
+        return "redirect:/board/qna";
     }
     
     @GetMapping("post")

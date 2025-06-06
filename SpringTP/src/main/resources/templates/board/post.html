@@ -20,7 +20,7 @@
 		<section class="post-box">
 			<div class="post-header">
 				<div class="author-info">
-					<img src="/images/profile.png" alt="프로필" class="profile-img">
+					<img src="/images/profile01.png" alt="프로필" class="profile-img">
 					<strong class="post-author" th:text="${post.author}">작성자</strong>
 				</div>
 				<div class="post-meta-right">
@@ -51,21 +51,36 @@
 		</div>
 
 		<!-- 댓글 예시 -->
-		<div class="comment-list">
-			<div class="comment">
-				<strong class="comment-author">gpt사용자</strong>
-				<p class="comment-content">덕분에 문제 해결했습니다. 감사합니다!</p>
-			</div>
-			<div class="comment">
-				<strong class="comment-author">javaKing</strong>
-				<p class="comment-content">4 * 10^14 힌트 감사합니다!</p>
-			</div>
+<div class="comment-list">
+  <div class="comment">
+    <div class="comment-header">
+      <div class="comment-author-info">
+        <img src="/images/profile01.png" alt="프로필" class="comment-profile-img">
+        <strong class="comment-author">돌인철</strong>
+      </div>
+      <span class="comment-time">5분 전</span>
+    </div>
+    <p class="comment-content">덕분에 문제 해결했습니다. 감사합니다!</p>
+  </div>
+
+  <div class="comment">
+    <div class="comment-header">
+      <div class="comment-author-info">
+        <img src="/images/profile02.png" alt="프로필" class="comment-profile-img">
+        <strong class="comment-author">KingJDJ</strong>
+      </div>
+      <span class="comment-time">12분 전</span>
+    </div>
+    <p class="comment-content">4 * 10^14 힌트 감사합니다!</p>
+  </div>
+</div>
+
+
+
+		<div class="list-button-wrap">
+			<a href="/board/free" class="list-btn">목록</a>
 		</div>
-		
-		<div class="back-to-list">
-		  <a href="/board/free" class="back-btn">← 목록으로 돌아가기</a>
-		</div>
-		
+
 	</main>
 
 	<footer th:replace="fragments/footer :: footer"></footer>
