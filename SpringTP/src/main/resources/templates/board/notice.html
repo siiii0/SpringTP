@@ -1,0 +1,54 @@
+<!-- notice.html -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>공지사항 - everyCODE</title>
+  <link rel="stylesheet" href="/css/notice.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+  <header th:replace="fragments/header :: header"></header>
+  <nav th:replace="fragments/nav :: nav"></nav>
+
+  <main>
+    <h2 class="page-title">공지사항</h2>
+
+    <div class="filter-bar">
+      <button class="write-btn">공지 작성</button>
+
+      <div class="search-box">
+        <input type="text" placeholder="공지 제목 검색">
+        <button class="search-btn">🔍</button>
+      </div>
+    </div>
+
+    <ul class="post-list">
+      <!-- 샘플 공지 -->
+      <li class="post-item" data-id="1">
+        <div class="post-title">
+          <strong>[안내] 2025년 everyCODE 알고리즘 대회 일정 공지</strong>
+          <span class="new-label">N</span>
+        </div>
+        <p class="post-preview">everyCODE 경진대회가 8월 10일에 개최됩니다. 많은 참여 바랍니다!</p>
+        <div class="post-meta">
+          <span class="info">1일 전 · 관리자</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="pagination">
+      <a href="#">Prev</a>
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">Next</a>
+    </div>
+  </main>
+
+  <div th:replace="fragments/footer :: footer"></div>
+  <script src="/js/nav.js" defer></script>
+  <script src="/js/notice.js" defer></script>
+</body>
+</html>
