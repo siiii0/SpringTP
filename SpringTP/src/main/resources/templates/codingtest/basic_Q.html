@@ -59,42 +59,44 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="question-row" data-id="1">
-          <td><strong>나머지 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
-          <td class="level">Lv. 0</td>
-          <td>77,922명</td>
-          <td>91%</td>
-        </tr>
-        <tr class="question-row" data-id="2">
-          <td><strong>두 수의 차 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
-          <td class="level">Lv. 1</td>
-          <td>82,204명</td>
-          <td>98%</td>
-        </tr>
-        <tr class="question-row" data-id="3">
-          <td><strong>숫자 비교하기</strong><br><span class="sub">코딩테스트 입문</span></td>
-          <td class="level">Lv. 4</td>
-          <td>2,204명</td>
-          <td>19%</td>
-        </tr>
-        <tr class="question-row" data-id="4">
-          <td><strong>나이 출력</strong><br><span class="sub">코딩테스트 입문</span></td>
-          <td class="level">Lv. 1</td>
-          <td>4,204명</td>
-          <td>50%</td>
-        </tr>
-        <tr class="question-row" data-id="5">
-          <td><strong>몫 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
-          <td class="level">Lv. 3</td>
-          <td>2,204명</td>
-          <td>77%</td>
-        </tr>
-      </tbody>
+	  <tr class="question-row" th:each="q : ${questions}" th:data-id="${q.q_id}">
+      	<td>
+        	<strong th:text="${q.q_title}">문제 제목</strong><br>
+        	<span class="sub">코딩테스트 입문</span>
+      	</td>
+      	<td class="level" th:text="${q.q_difficulty}">난이도</td>
+      	<td class="number-cell" th:text="${q.q_submits} + ' 명'">완료한 사람</td>
+      	<td th:text="${q.q_crt_per} + '%'">정답률</td>
+      </tr>
+      </tbody>  
     </table>
+    
+	<div class="pagination">
+	  <ul style="list-style:none; display:flex; gap:5px; padding:0;">
+	    <li th:if="${currentPage > 1}">
+	      <a th:href="@{/basic_Q(page=${currentPage - 1})}">이전</a>
+	    </li>
+	    <li th:each="i : ${#numbers.sequence(1, totalPages)}" 
+	        th:classappend="${i == currentPage} ? 'active'" 
+	        style="padding: 4px 8px; border:1px solid #ccc; cursor:pointer;">
+	      <a th:href="@{/basic_Q(page=${i})}" th:text="${i}">1</a>
+	    </li>
+	    <li th:if="${currentPage < totalPages}">
+	      <a th:href="@{/basic_Q(page=${currentPage + 1})}">다음</a>
+	    </li>
+	  </ul>
+	</div>
+	
   </main>
 
   <div th:replace="fragments/footer :: footer"></div>
   <script src="/js/nav.js" defer></script>
   <script src="/js/basic_Q.js" defer></script>
+  <script>
+	document.querySelectorAll('.number-cell').forEach(td => {
+	  const num = parseInt(td.innerText);
+	  td.innerText = num.toLocaleString() + ' 명';
+	});
+</script>
 </body>
 </html>
