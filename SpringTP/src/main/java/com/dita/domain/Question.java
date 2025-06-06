@@ -25,7 +25,8 @@ public class Question {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int q_id;
+	@Column(name = "q_id")
+	private int qId;
 	
 	@Column(unique = true, nullable = true)
 	private int q_num;
