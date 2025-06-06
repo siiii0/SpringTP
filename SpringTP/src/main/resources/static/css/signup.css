@@ -64,6 +64,41 @@ input {
     transition: border-color 0.2s;
 }
 
+div#user{
+	display: flex;
+	align-items: center; 
+	gap: 10px;
+}
+
+input#username {
+    padding: 12px 15px;
+    border: 1px solid #dbe1ea;
+    border-radius: 12px;
+    background-color: #f9fbff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 300px;
+}
+
+input#userCheck {
+    padding: 12px 15px;
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100px;
+    height: 40px;
+}
+
+input#userCheck:hover {
+    background-color: #333;
+}
+
 input:focus {
     border-color: #007bff;
 }
