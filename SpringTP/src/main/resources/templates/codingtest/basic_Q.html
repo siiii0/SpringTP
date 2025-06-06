@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>기본문제 - everyCODE</title>
+  <title>기본 문제 - everyCODE</title>
   <link rel="stylesheet" href="/css/basic_Q.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/nav.css">
@@ -15,7 +15,6 @@
     <h2 class="page-title">기본 문제</h2>
 
     <div class="filters">
-	  <!-- 정렬 기준 -->
 	  <select id="sortSelect" onchange="handleSelectChange(this)">
 		  <option selected>정렬 기준</option>
 		  <option>정답률 높은 순</option>
@@ -60,31 +59,31 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="question-row" data-id="1">
           <td><strong>나머지 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
           <td class="level">Lv. 0</td>
           <td>77,922명</td>
           <td>91%</td>
         </tr>
-        <tr>
+        <tr class="question-row" data-id="2">
           <td><strong>두 수의 차 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
           <td class="level">Lv. 1</td>
           <td>82,204명</td>
           <td>98%</td>
         </tr>
-        <tr>
+        <tr class="question-row" data-id="3">
           <td><strong>숫자 비교하기</strong><br><span class="sub">코딩테스트 입문</span></td>
           <td class="level">Lv. 4</td>
           <td>2,204명</td>
           <td>19%</td>
         </tr>
-        <tr>
+        <tr class="question-row" data-id="4">
           <td><strong>나이 출력</strong><br><span class="sub">코딩테스트 입문</span></td>
           <td class="level">Lv. 1</td>
           <td>4,204명</td>
           <td>50%</td>
         </tr>
-        <tr>
+        <tr class="question-row" data-id="5">
           <td><strong>몫 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
           <td class="level">Lv. 3</td>
           <td>2,204명</td>
@@ -97,7 +96,5 @@
   <div th:replace="fragments/footer :: footer"></div>
   <script src="/js/nav.js" defer></script>
   <script src="/js/basic_Q.js" defer></script>
- 
-  
 </body>
 </html>

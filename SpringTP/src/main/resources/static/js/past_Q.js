@@ -139,5 +139,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const table = document.querySelector(".question-table tbody");
   if (table) {
     allRowsOriginal = Array.from(table.querySelectorAll("tr"));
+
+    allRowsOriginal.forEach((row) => {
+      row.classList.add("clickable-row");
+      row.addEventListener("click", () => {
+        const title = row.querySelector("strong")?.innerText.trim();
+        if (!title) return;
+
+        const slug = encodeURIComponent(title.replace(/\s+/g, "_"));
+        window.location.href = `/codingtest/solve_Q?title=${slug}`;
+      });
+    });
   }
 });
+

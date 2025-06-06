@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>기본문제 - everyCODE</title>
+  <title>문제풀기 - everyCODE</title>
   <link rel="stylesheet" href="/css/solve_Q.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/nav.css">
@@ -105,7 +105,7 @@
     <div class="vertical-split">
       <div class="top-pane">
         <div class="code-header">
-		  <button id="toggleViewBtn">제출 내역 보기 ⟷</button>
+        <button id="toggleViewBtn">제출 내역 보기 ⟷</button>
 		  <select id="languageSelector">
 		    <option value="C">C</option>
 		    <option value="JAVA">JAVA</option>
@@ -150,5 +150,14 @@ int solution(int num1, int num2) {
 <!-- 프로젝트 JS 연동 -->
 <script src="/js/nav.js" defer></script>
 <script src="/js/solve_Q.js" defer></script>
+
+<!-- 결과 모달 -->
+<div id="resultModal" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <p class="modal-message">정답입니다!</p>
+    <button class="modal-button" id="modalActionBtn">확인</button>
+  </div>
+</div>
+
 </body>
 </html>
