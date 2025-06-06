@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>문제 목록</title>
+</head>
+<body>
+<h2>문제 목록</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>제목</th>
+        <th>난이도</th>
+        <th>정답률</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="q : ${questions}">
+		<td><a th:href="@{'/questions/' + ${q.q_id}}" th:text="${q.q_title}">문제 제목</a></td>
+        <td th:text="${q.q_difficulty}">난이도</td>
+        <td th:text="${q.q_crt_per} + '%'">정답률</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

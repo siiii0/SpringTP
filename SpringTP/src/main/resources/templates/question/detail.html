@@ -1,0 +1,38 @@
+<!-- src/main/resources/templates/question/detail.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>문제 상세</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h2>문제 상세 보기</h2>
+
+<!-- 문제 객체가 모델에 'question' 이름으로 전달됨 -->
+<table border="1">
+    <tr>
+        <th>제목</th>
+        <td th:text="${question.q_title}">문제 제목</td>
+    </tr>
+    <tr>
+        <th>내용</th>
+        <td th:text="${question.q_content}">문제 내용</td>
+    </tr>
+    <tr>
+        <th>난이도</th>
+        <td th:text="${question.q_difficulty}">난이도</td>
+    </tr>
+    <tr>
+        <th>정답률</th>
+        <td th:text="${question.q_crt_per} + '%'">정답률</td>
+    </tr>
+</table>
+
+<!-- 목록으로 돌아가기 링크 -->
+<p>
+    <a th:href="@{/questions}">← 문제 목록으로 돌아가기</a>
+</p>
+
+</body>
+</html>
