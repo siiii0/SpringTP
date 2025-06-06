@@ -11,3 +11,14 @@ public interface SignupRepository extends JpaRepository<User, User_id_type>{
 	
 	boolean existsById(User_id_type user_id);
 }
+/*
+ * package com.dita.repository;
+ * 
+ * import org.springframework.data.jpa.repository.JpaRepository;
+ * 
+ * import com.dita.domain.User;
+ * 
+ * public interface SignupRepository extends JpaRepository<User, Long>{
+ * 
+ * }
+ */

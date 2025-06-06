@@ -1,0 +1,25 @@
+<nav class="nav" th:fragment="nav">
+<ul class="nav-menu">
+  <li class="nav-item" data-menu="coding">코딩 테스트</li>
+  <li class="nav-item" data-menu="board">게시판</li>
+  <li class="nav-item" data-menu="ranking">랭킹</li>
+</ul>
+
+  <div class="dropdown-wrapper" id="dropdown" onmouseleave="hideMenu()">
+    <div class="dropdown-content coding">
+      <a href="/basic_Q">기본 문제</a>
+      <a href="#">기출 문제</a>
+      <a href="#">사용 출제 문제</a>
+    </div>
+    <div class="dropdown-content board">
+      <a href="#">자유 게시판</a>
+      <a href="#">문제 Q&A</a>
+      <a href="#">문제 오류</a>
+      <a href="#">공지사항</a>
+    </div>
+    <div class="dropdown-content ranking">
+      <a href="#">학교/회사</a>
+      <a href="#">언어</a>
+    </div>
+  </div>
+</nav>

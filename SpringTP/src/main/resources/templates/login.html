@@ -12,8 +12,9 @@
         <!-- 헤더 Fragment 삽입 -->
 		<header th:replace="fragments/header :: header"></header>
         <div class="login-box">
+        <h1 class="logo">로그인</h1>
 
-            <form th:action="@{/login}" method="post">
+            <form action="#" method="post" onsubmit="return false;">
                 <label for="username">아이디</label>
                 <input type="text" id="username" name="username" placeholder="아이디를 입력하세요">
 
