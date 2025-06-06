@@ -9,5 +9,10 @@ public class SignupController {
     public String signupPage() {
         return "signup"; 
     }
+    
+    @GetMapping("/register")
+    public String register() {
+    	return "login";
+    }
 }
 
