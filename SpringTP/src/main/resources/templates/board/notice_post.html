@@ -1,0 +1,52 @@
+<!-- notice_post.html -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>공지사항 상세보기 - everyCODE</title>
+<link rel="stylesheet" href="/css/post.css">
+<!-- post.css 재활용 -->
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+	<header th:replace="fragments/header :: header"></header>
+	<nav th:replace="fragments/nav :: nav"></nav>
+
+	<main class="post-container">
+		<h2 class="page-title">공지사항</h2>
+
+		<section class="post-box">
+			<div class="post-header">
+				<div class="author-info">
+					<img src="/images/profile01.png" alt="프로필" class="profile-img">
+					<strong class="post-author" th:text="${post.writer}">관리자</strong>
+				</div>
+				<div class="post-meta-right">
+					<span class="post-date" th:text="${post.createdAt}">2025-06-06</span>
+					<span class="post-views">조회수 <span
+						th:text="${post.viewCount}">0</span></span>
+				</div>
+			</div>
+
+			<!-- 제목 -->
+			<h3 class="post-title" th:text="${post.title}">📌 [중요] 2025년
+				everyCODE 경진대회 일정 안내 📌</h3>
+			<hr class="title-divider">
+
+			<!-- 본문 -->
+			<div class="post-content"
+				th:utext="${#strings.replace(post.content, '\n', '<br/>')}"></div>
+
+		</section>
+
+		<!-- 목록 버튼 -->
+		<div class="list-button-wrap">
+			<a href="/board/notice" class="list-btn">목록</a>
+		</div>
+	</main>
+
+	<footer th:replace="fragments/footer :: footer"></footer>
+	<script src="/js/nav.js" defer></script>
+</body>
+</html>
