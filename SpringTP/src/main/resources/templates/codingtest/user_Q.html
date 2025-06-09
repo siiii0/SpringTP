@@ -2,8 +2,8 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>기본문제 - everyCODE</title>
-  <link rel="stylesheet" href="/css/basic_Q.css">
+  <title>사용자 출제 문제 - everyCODE</title>
+  <link rel="stylesheet" href="/css/user_Q.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/nav.css">
 </head>
@@ -12,45 +12,43 @@
   <nav th:replace="fragments/nav :: nav"></nav>
 
   <main>
-    <h2 class="page-title">기본 문제</h2>
+    <h2 class="page-title">사용자 출제 문제</h2>
 
-    <div class="filters">
-	  <!-- 정렬 기준 -->
-	  <select id="sortSelect" onchange="handleSelectChange(this)">
-		  <option selected>정렬 기준</option>
-		  <option>정답률 높은 순</option>
-		  <option>정답률 낮은 순</option>
-		  <option>완료한 사람 많은 순</option>
-		  <option>최신 등록 순</option>
-		</select>
-		
-		<select id="levelSelect" onchange="handleSelectChange(this)">
-		  <option selected>난이도</option>
-		  <option>Lv. 0</option>
-		  <option>Lv. 1</option>
-		  <option>Lv. 2</option>
-		  <option>Lv. 3</option>
-		  <option>Lv. 4</option>
-		  <option>Lv. 5</option>
-		</select>
-		
-		<select id="languageSelect" onchange="handleSelectChange(this)">
-		  <option selected>언어</option>
-		  <option>Python</option>
-		  <option>JAVA</option>
-		  <option>C</option>
-		</select>
-		
-	  <input type="text" placeholder="문제 제목 검색">
-	  <button class="search-btn">🔍</button>
-	</div>
+    <div class="user-filters">
+      <select id="sortSelect" onchange="handleUserSelectChange(this)">
+        <option selected>정렬 기준</option>
+        <option>정답률 높은 순</option>
+        <option>정답률 낮은 순</option>
+        <option>완료한 사람 많은 순</option>
+        <option>최신 등록 순</option>
+      </select>
 
+      <select id="levelSelect" onchange="handleUserSelectChange(this)">
+        <option selected>난이도</option>
+        <option>Lv. 0</option>
+        <option>Lv. 1</option>
+        <option>Lv. 2</option>
+        <option>Lv. 3</option>
+        <option>Lv. 4</option>
+        <option>Lv. 5</option>
+      </select>
 
-    <div class="tags" id="tagContainer">
-	  <span class="reset" onclick="clearAllTags()">초기화 ⟲</span>
-	</div>
+      <select id="languageSelect" onchange="handleUserSelectChange(this)">
+        <option selected>언어</option>
+        <option>Python</option>
+        <option>JAVA</option>
+        <option>C</option>
+      </select>
 
-    <table class="question-table">
+      <input type="text" placeholder="문제 제목 검색">
+      <button class="search-btn">🔍</button>
+    </div>
+
+    <div class="user-tags" id="tagContainer">
+      <span class="reset" onclick="clearAllUserTags()">초기화 ⟲</span>
+    </div>
+
+    <table class="user-question-table">
       <thead>
         <tr>
           <th>제목</th>
@@ -60,31 +58,31 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-id="1">
           <td><strong>나머지 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
           <td class="level">Lv. 0</td>
           <td>77,922명</td>
           <td>91%</td>
         </tr>
-        <tr>
+        <tr data-id="2">
           <td><strong>두 수의 차 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
           <td class="level">Lv. 1</td>
           <td>82,204명</td>
           <td>98%</td>
         </tr>
-        <tr>
+        <tr data-id="3">
           <td><strong>숫자 비교하기</strong><br><span class="sub">코딩테스트 입문</span></td>
           <td class="level">Lv. 4</td>
           <td>2,204명</td>
           <td>19%</td>
         </tr>
-        <tr>
+        <tr data-id="4">
           <td><strong>나이 출력</strong><br><span class="sub">코딩테스트 입문</span></td>
           <td class="level">Lv. 1</td>
           <td>4,204명</td>
           <td>50%</td>
         </tr>
-        <tr>
+        <tr data-id="5">
           <td><strong>몫 구하기</strong><br><span class="sub">코딩테스트 입문</span></td>
           <td class="level">Lv. 3</td>
           <td>2,204명</td>
@@ -96,8 +94,6 @@
 
   <div th:replace="fragments/footer :: footer"></div>
   <script src="/js/nav.js" defer></script>
-  <script src="/js/basic_Q.js" defer></script>
- 
-  
+  <script src="/js/user_Q.js" defer></script>
 </body>
 </html>

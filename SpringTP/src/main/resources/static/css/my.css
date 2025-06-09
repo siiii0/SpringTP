@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #fff;
+  color: #222;
+}
+
+.mypage-container {
+  padding: 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.summary-box {
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.tier-section {
+  text-align: center;
+}
+
+.tier-img {
+  width: 80px;
+  height: 80px;
+}
+
+.tier-label {
+  display: block;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2a88e6;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  flex: 1;
+}
+
+.stat-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.stat-box p {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.stat-box strong {
+  font-size: 22px;
+  color: #222;
+}
+
+.graph-container {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.year-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 16px;
+  color: #666;
+  position: absolute;
+  margin-left: -40px;
+  margin-top: 20px;
+}
+
+#activityChart {
+  width: 100%;
+  max-width: 1000px;
+  height: 120px;
+}
+
+footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 12px;
+  color: #999;
+  border-top: 1px solid #eee;
+  margin-top: 48px;
+}

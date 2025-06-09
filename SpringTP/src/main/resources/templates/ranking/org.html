@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>학교/회사 랭킹 - everyCODE</title>
+  <link rel="stylesheet" href="/css/org.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+  <header th:replace="fragments/header :: header"></header>
+  <nav th:replace="fragments/nav :: nav"></nav>
+
+  <main>
+    <h2 class="page-title">학교/회사</h2>
+
+    <div class="filter-bar">
+      <select>
+        <option selected>전체</option>
+        <option>맞은 문제 많은 순</option>
+        <option>총 점수 높은 순</option>
+        <option>정답 비율 높은 순</option>
+      </select>
+    </div>
+
+    <table class="ranking-table">
+      <thead>
+        <tr>
+          <th>순위</th>
+          <th>학교/회사</th>
+          <th>인원</th>
+          <th>맞은 문제</th>
+          <th>총 점수</th>
+          <th>정답 비율</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td><td>동의대학교 가야캠퍼스</td><td>21307</td><td>35059</td><td>2498721</td><td>50.954%</td>
+        </tr>
+        <tr>
+          <td>2</td><td>바이트 사이즈</td><td>50</td><td>24426</td><td>944185</td><td>52.161%</td>
+        </tr>
+        <tr>
+          <td>3</td><td>동의대학교 양정캠퍼스</td><td>756</td><td>20816</td><td>473218</td><td>50.989%</td>
+        </tr>
+      </tbody>
+    </table>
+
+<div class="pagination">
+  <a href="#">Prev</a>
+  <a href="#" class="active">1</a>
+  <a href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">Next</a>
+</div>
+
+  </main>
+
+  <footer th:replace="fragments/footer :: footer"></footer>
+  <script src="/js/nav.js" defer></script>
+  <script src="/js/org.js" defer></script>
+</body>
+</html>

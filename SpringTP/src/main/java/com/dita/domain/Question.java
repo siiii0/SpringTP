@@ -25,7 +25,8 @@ public class Question {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int q_id;
+	@Column(name = "q_id")
+	private int qId;
 	
 	@Column(unique = true, nullable = true)
 	private int q_num;
@@ -50,6 +51,18 @@ public class Question {
 	
 	@Column(nullable = true)
 	private int q_recommend = 0;
+	
+	@Column(columnDefinition = "text", nullable = true)
+	private String q_input;
+	
+	@Column(columnDefinition = "text", nullable = true)
+	private String q_output;
+	
+	@Column(columnDefinition = "text", nullable = true)
+	private String q_inputEx;
+	
+	@Column(columnDefinition = "text", nullable = true)
+	private String q_outputEx;
 	
 	
 	@ManyToOne

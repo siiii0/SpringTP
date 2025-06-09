@@ -22,6 +22,7 @@
             <input type="hidden" name="_csrf" th:if="${_csrf != null}" th:value="${_csrf.token}" />
             
             <label for="username">아이디 <span class="required">*</span></label>
+
             <div id="user">
 	            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요" required>
 				<input type="button" id="userCheck" value="중복 체크">
@@ -48,7 +49,7 @@
             <label for="school">학교/회사</label>
             <input type="text" id="school" name="school" placeholder="학교/회사를 입력하세요">
             
-            <button type="submit" class="login-btn">회원가입</button>
+            <button type="submit" class="login-btn" onclick="regi()">회원가입</button>
         </form>
     </div>
 
@@ -176,6 +177,7 @@
             console.log('폼 유효성 검사 통과, 서버로 전송');
         });
     });
+
 </script>
 </body>
 </html>

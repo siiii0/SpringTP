@@ -12,22 +12,23 @@ document.addEventListener("DOMContentLoaded", () => {
     indentUnit: 4,
     tabSize: 4,
     matchBrackets: true,
-    viewportMargin: Infinity,  // 높이 자동 확장 제거
+    viewportMargin: Infinity,
   });
 
   codeMirrorInstance.setSize(null, "100%");
-  
+
   // 언어 선택에 따라 코드 문법 변경
   const langSelector = document.getElementById("languageSelector");
   langSelector.addEventListener("change", (e) => {
     const lang = e.target.value;
     let mode = "text/x-csrc";
-    if (lang === "JAVA") mode = "text/x-java";
-    else if (lang === "Python") mode = "python";
-    else if (lang === "C") mode = "text/x-csrc";
+    if (lang === "java") mode = "text/x-java";
+    else if (lang === "py") mode = "python";
+    else if (lang === "cpp") mode = "text/x-c++src";
     codeMirrorInstance.setOption("mode", mode);
   });
-  
+
+  // 문제/제출 내역 toggle
   const toggleBtn = document.getElementById("toggleViewBtn");
   const problemView = document.getElementById("problemView");
   const submissionView = document.getElementById("submissionView");
@@ -38,7 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     submissionView.style.display = isProblemVisible ? "block" : "none";
     toggleBtn.innerText = isProblemVisible ? "문제 보기 ⟷" : "제출 내역 보기 ⟷";
   });
-  
+
+  // 제출 내역 펼치기/닫기
   document.querySelectorAll(".submission-row").forEach((row, index) => {
     row.addEventListener("click", () => {
       const arrow = row.querySelector(".toggle-arrow");
@@ -49,6 +51,32 @@ document.addEventListener("DOMContentLoaded", () => {
       arrow.textContent = isOpen ? "▶" : "▼";
     });
   });
+
+  // 제출 버튼 클릭 시 모달 표시
+  document.querySelector(".submit-btn").addEventListener("click", () => {
+    // 임시 정답 판별 로직 (실제 채점 결과로 대체 가능)
+    const isCorrect = Math.random() > 0.5;
+    showResultModal(isCorrect);
+  });
+
+  // 모달 제어 함수
+  function showResultModal(isCorrect) {
+    const modal = document.getElementById("resultModal");
+    const message = modal.querySelector(".modal-message");
+    const actionBtn = modal.querySelector("#modalActionBtn");
+
+    if (isCorrect) {
+      message.textContent = "정답입니다!";
+      actionBtn.textContent = "확인";
+      actionBtn.onclick = () => modal.style.display = "none";
+    } else {
+      message.textContent = "틀렸습니다!";
+      actionBtn.textContent = "다시 풀기";
+      actionBtn.onclick = () => modal.style.display = "none"; // 또는 location.reload();
+    }
+
+    modal.style.display = "flex";
+  }
 });
 
 function makeDraggable(splitter, type) {

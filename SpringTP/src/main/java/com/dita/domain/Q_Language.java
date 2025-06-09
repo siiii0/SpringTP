@@ -1,6 +1,9 @@
 package com.dita.domain;
 
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +22,13 @@ public class Q_Language {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int q_id;
+	private int ql_id;
+	
+	@ManyToOne
+    @JoinColumns({
+        @JoinColumn(name = "q_id", referencedColumnName = "q_id"),
+    })
+	private Question qId;
 	
 	@Column(columnDefinition = "varchar(20)", nullable = false)
 	private String q_language;

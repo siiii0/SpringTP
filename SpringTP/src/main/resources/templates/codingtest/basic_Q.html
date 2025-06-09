@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>기본 문제 - everyCODE</title>
+  <link rel="stylesheet" href="/css/basic_Q.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/nav.css">
+</head>
+<body>
+  <header th:replace="fragments/header :: header"></header>
+  <nav th:replace="fragments/nav :: nav"></nav>
+
+  <main>
+    <h2 class="page-title">기본 문제</h2>
+
+    <div class="filters">
+	  <select id="sortSelect" onchange="handleSelectChange(this)">
+		  <option selected>정렬 기준</option>
+		  <option>정답률 높은 순</option>
+		  <option>정답률 낮은 순</option>
+		  <option>완료한 사람 많은 순</option>
+		  <option>최신 등록 순</option>
+		</select>
+		
+		<select id="levelSelect" onchange="handleSelectChange(this)">
+		  <option selected>난이도</option>
+		  <option>LV. 0</option>
+		  <option>LV. 1</option>
+		  <option>LV. 2</option>
+		  <option>LV. 3</option>
+<!-- 		  <option>Lv. 4</option>
+		  <option>Lv. 5</option> -->
+		</select>
+		
+		<select id="languageSelect" onchange="handleSelectChange(this)">
+		  <option selected>언어</option>
+		  <option>Python</option>
+		  <option>JAVA</option>
+		  <option>C++</option>
+		</select>
+		
+	  <input type="text" placeholder="문제 제목 검색">
+	  <button class="search-btn">🔍</button>
+	</div>
+
+
+    <div class="tags" id="tagContainer">
+	  <span class="reset" onclick="clearAllTags()">초기화 ⟲</span>
+	</div>
+
+    <table class="question-table">
+      <thead>
+        <tr>
+          <th>제목</th>
+          <th>난이도</th>
+          <th>완료한 사람</th>
+          <th>정답률</th>
+        </tr>
+      </thead>
+      <tbody>
+	  <tr class="question-row" th:each="q : ${questions}" th:data-id="${q.qId}">
+      	<td>
+        	<strong th:text="${q.q_title}">문제 제목</strong><br>
+        	<span class="sub">코딩테스트 입문</span>
+      	</td>
+      	<td class="level" th:text="${q.q_difficulty}">난이도</td>
+      	<td class="number-cell" th:text="${q.q_submits} + ' 명'">완료한 사람</td>
+      	<td th:text="${q.q_crt_per} + '%'">정답률</td>
+      </tr>
+      </tbody>  
+    </table>
+    
+	<div class="pagination">
+	  <ul style="list-style:none; display:flex; gap:5px; padding:0;">
+	    <li th:if="${currentPage > 1}">
+	      <a th:href="@{/codingtest/basic_Q(page=${currentPage})}">이전</a>
+	    </li>
+	    <li th:each="i : ${#numbers.sequence(1, totalPages)}" 
+	        th:classappend="${i == currentPage} ? 'active'" 
+	        style="padding: 4px 8px; border:1px solid #ccc; cursor:pointer;">
+	      <a th:href="@{/codingtest/basic_Q(page=${i})}" th:text="${i}">1</a>
+	    </li>
+	    <li th:if="${currentPage < totalPages}">
+	      <a th:href="@{/codingtest/basic_Q(page=${currentPage + 1})}">다음</a>
+	    </li>
+	  </ul>
+	</div>
+	
+  </main>
+
+  <div th:replace="fragments/footer :: footer"></div>
+  <script src="/js/nav.js" defer></script>
+  <script src="/js/basic_Q.js" defer></script>
+  <script>
+	document.querySelectorAll('.number-cell').forEach(td => {
+	  const num = parseInt(td.innerText);
+	  td.innerText = num.toLocaleString() + ' 명';
+	});
+</script>
+</body>
+</html>

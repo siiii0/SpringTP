@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>마이페이지 - everyCODE</title>
+  <link rel="stylesheet" href="/css/my.css">
+  <link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/mypage_header.css">
+</head>
+<body>
+  <header th:replace="fragments/header :: header"></header>
+
+  <main class="mypage-container">
+    <!-- 마이페이지 상단 사용자 정보 (프래그먼트 분리) -->
+    <div th:replace="fragments/mypage_header :: mypageHeader"></div>
+
+    <!-- 통계 요약 박스 -->
+    <div class="summary-box">
+      <div class="tier-section">
+        <div class="tier-icon">
+          <img src="/images/tier-icon.png" alt="티어" class="tier-img">
+        </div>
+        <span class="tier-label">초급</span>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box"><p>제출한 문제</p><strong>35</strong></div>
+        <div class="stat-box"><p>내가 낸 문제</p><strong>5</strong></div>
+        <div class="stat-box"><p>틀린 문제</p><strong>6</strong></div>
+        <div class="stat-box"><p>맞은 문제</p><strong>29</strong></div>
+      </div>
+    </div>
+
+    <!-- 월별 그래프 -->
+    <div class="graph-container">
+      <p class="year-label">2025</p>
+      <canvas id="activityChart" height="150"></canvas>
+      <p class="footer-label">©2025 everyCODE</p>
+    </div>
+  </main>
+
+  <footer th:replace="fragments/footer :: footer"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/js/my.js" defer></script>
+</body>
+</html>

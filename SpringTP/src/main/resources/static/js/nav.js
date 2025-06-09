@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // 대분류 nav-item과 수직 정렬
         const itemRect = item.getBoundingClientRect();
         const dropdownRect = dropdown.getBoundingClientRect();
-
         const offset = itemRect.left + item.offsetWidth / 2 - dropdownRect.left - target.offsetWidth / 2;
         target.style.left = `${offset}px`;
       }
