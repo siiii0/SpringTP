@@ -18,35 +18,35 @@ import lombok.NoArgsConstructor;
 public class User {
 	
     @EmbeddedId
-    private User_id_type id_type; // 복합키
+    private User_id_type idType; // 복합키 - 필드명 변경 (IdType -> idType)
     
-    @Column(columnDefinition = "varchar(20)", nullable = true)
-	private String user_pwd;
+    @Column(name ="user_pwd", columnDefinition = "varchar(100)", nullable = true)
+	private String userPwd;
     
-    @Column(columnDefinition = "text", nullable = true)
-	private String user_profile;
+    @Column(name="user_profile",columnDefinition = "text", nullable = true)
+	private String userProfile;
     
-    @Column(columnDefinition = "varchar(30)", nullable = true)
-	private String user_email;
+    @Column(name="user_email",columnDefinition = "varchar(30)", nullable = true)
+	private String userEmail;
     
-    @Column(nullable = true)
-	private int user_score = 0;
+    @Column(name="user_score",nullable = true)
+	private int userScore = 0;
     
-    @Column(columnDefinition = "varchar(10) default '일반'", nullable = true)
-	private String user_grade;
+    @Column(name="user_grade",columnDefinition = "varchar(10) default '일반'", nullable = true)
+	private String userGrade;
     
-    @Column(columnDefinition = "varchar(30)", nullable = true)
-	private String user_school;
+    @Column(name="user_school",columnDefinition = "varchar(30)", nullable = true)
+	private String userSchool;
     
-    @Column(nullable = true)
-	private LocalDateTime registered_at;
+    @Column(name="registered_at",nullable = true)
+	private LocalDateTime registeredAt;
 	
-	@Column(columnDefinition = "varchar(1) default 'N'", nullable = true)
-	private String user_wd;
+	@Column(name="user_wd",columnDefinition = "varchar(1) default 'N'", nullable = true)
+	private String userWd;
 	
-	@Column(columnDefinition = "text", nullable = true)
-	private String user_wd_reason;
+	@Column(name="user_wd_reason",columnDefinition = "text", nullable = true)
+	private String userWdReason;
 	
-	@Column(nullable = true)
-	private LocalDateTime user_wd_date;
+	@Column(name="user_wd_date",nullable = true)
+	private LocalDateTime userWdDate;
 }
