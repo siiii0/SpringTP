@@ -12,63 +12,63 @@
 	<nav th:replace="fragments/nav :: nav"></nav>
 
 	<main>
-		<h2 class="page-title">등급</h2>
+		<h2 class="page-title">개인</h2>
 
-  <div class="table-container">
-    <div class="filter-bar">
-      <select>
-        <option selected>전체</option>
-        <option>브론즈</option>
-        <option>실버</option>
-        <option>골드</option>
-        <option>플래티넘</option>
-        <option>다이아</option>
-        <option>루비</option>
-      </select>
-    </div>
+		<div class="table-container">
+			<div class="filter-bar">
+				<select>
+					<option selected>전체</option>
+					<option>브론즈</option>
+					<option>실버</option>
+					<option>골드</option>
+					<option>플래티넘</option>
+					<option>다이아</option>
+				</select>
+			</div>
 
-		<table class="ranking-table">
-			<thead>
-				<tr>
-					<th>순위</th>
-					<th>사용자</th>
-					<th>등급</th>
-					<th>푼 문제</th>
-					<th>정답 비율</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>돌인철</td>
-					<td>Gold</td>
-					<td>320</td>
-					<td>98.5%</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>창건2</td>
-					<td>Silver</td>
-					<td>250</td>
-					<td>92.3%</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>JDJ</td>
-					<td>Bronze</td>
-					<td>180</td>
-					<td>87.0%</td>
-				</tr>
-			</tbody>
-		</table>
+			<table class="ranking-table">
+				<thead>
+					<tr>
+						<th>순위</th>
+						<th>사용자</th>
+						<th>등급</th>
+						<th>푼 문제</th>
+						<th>총 점수</th>
+						<th>정답 비율</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>돌인철</td>
+						<td>Gold</td>
+						<td>320</td>
+						<td>4420</td>						
+						<td>98.5%</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>창건2</td>
+						<td>Silver</td>
+						<td>250</td>
+						<td>9647</td>
+						<td>92.3%</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>JDJ</td>
+						<td>Bronze</td>
+						<td>180</td>
+						<td>4570</td>						
+						<td>87.0%</td>
+					</tr>
+				</tbody>
+			</table>
 
-		<div class="pagination">
-			<a href="#">Prev</a> 
-			<a href="#" class="active">1</a> 
-			<a href="#">2</a>
-			<a href="#">3</a> 
-			<a href="#">Next</a>
-		</div>
+			<div class="pagination">
+				<a href="#">Prev</a> <a href="#" class="active">1</a> <a href="#">2</a>
+				<a href="#">3</a> <a href="#">Next</a>
+			</div>
 	</main>
 
 	<footer th:replace="fragments/footer :: footer"></footer>

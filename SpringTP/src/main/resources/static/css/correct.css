@@ -1,0 +1,76 @@
+/* correct.css */
+
+.page-title {
+  font-size: 24px;
+  text-align: center;
+  margin: 40px 0;
+}
+
+.submission-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.submission-table th, .submission-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.submission-table th {
+  background-color: #f8f8f8;
+  font-weight: bold;
+}
+
+.submission-table .problem-title {
+  color: #2ecc71;
+  font-weight: bold;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px 0;
+}
+
+.page-link {
+  padding: 6px 12px;
+  color: #222;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.page-link.active {
+  background-color: #222;
+  color: #fff;
+  font-weight: bold;
+}
+
+.page-link.disabled {
+  color: #aaa;
+  cursor: default;
+  border-color: #eee;
+}
+
+
+.page-link {
+  margin: 0 4px;
+  color: #444;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.page-link.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.page-link.disabled {
+  color: #aaa;
+  cursor: default;
+}

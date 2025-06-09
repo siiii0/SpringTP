@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>정보 수정 - everyCODE</title>
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/mypage_menu.css">
+  <link rel="stylesheet" href="/css/edit_social.css">
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+
+<main class="mypage-container">
+  <div class="mypage-layout">
+
+    <div class="mypage-menu-bar">
+      <a href="/mypage" class="menu-link">마이페이지</a>
+      <a href="/mypage/edit/social" class="menu-link menu-selected">| 정보 수정</a>
+    </div>
+
+    <div class="mypage-content">
+
+      <section class="edit-form-container">
+
+        <form class="edit-form">
+<div class="profile-section">
+  <img src="/images/profile01.png" alt="프로필" class="edit-profile-img">
+  <button type="button" class="edit-profile-btn">편집</button>
+  <input type="file" id="profileImageInput" accept="image/*" style="display: none;">
+</div>
+
+          <label for="name">이름 *</label>
+          <input type="text" id="name" value="user01" required>
+
+<label for="id">ID *</label>
+<div class="social-id-wrapper">
+  <img src="/images/Google.png" alt="google" class="social-icon">
+  <span class="social-id-text">dlckdrjs03@google.com</span>
+</div>
+
+<p class="password-hint">💡 (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자)</p>
+
+          <label for="email">이메일</label>
+          <input type="email" id="email" value="donguei123@naver.com">
+
+          <button type="submit" class="submit-btn">회원 정보 수정</button>
+          <div id="editSuccessModal" class="modal-overlay">
+  <div class="modal-box">
+    <p class="modal-message">회원 정보가 수정되었습니다.</p>
+    <div class="modal-actions">
+      <button class="modal-confirm-btn">확인</button>
+    </div>
+  </div>
+</div>
+          
+        </form>
+
+<div class="withdraw-link">
+  <a href="#" class="withdraw-text">회원탈퇴</a>
+</div>
+
+<div id="withdrawModal" class="modal-overlay">
+  <div class="modal-box">
+    <p class="modal-message">정말 탈퇴하시겠습니까?</p>
+    <div class="modal-actions">
+      <button class="modal-cancel-btn">취소</button>
+      <button class="modal-confirm-btn">탈퇴</button>
+    </div>
+  </div>
+</div>
+
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>2025ⓒeveryCODE</p>
+</footer>
+<script src="/js/edit_social.js"></script>
+
+</body>
+</html>

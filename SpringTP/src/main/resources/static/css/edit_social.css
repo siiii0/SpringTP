@@ -1,0 +1,249 @@
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #fff;
+  color: #222;
+}
+
+.mypage-container {
+  padding: 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mypage-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px 80px;
+}
+
+.mypage-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.edit-form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-form .logo {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.edit-form .logo span {
+  font-family: 'Arial Black', sans-serif;
+}
+
+.edit-form {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.edit-profile-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ddd;
+  object-fit: cover;
+}
+
+.edit-profile-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.edit-profile-btn:hover {
+  background-color: #333333;
+}
+
+.edit-profile-btn:active {
+  background-color: #000;
+  transform: scale(0.97);
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="password"],
+.edit-form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f8f8f8;
+}
+
+.social-id-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+.social-id-text {
+  color: #888;
+  font-size: 14px;
+  word-break: break-all;
+}
+
+.password-wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.password-hint {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 16px;
+  margin-left: 4px;
+}
+
+.change-btn {
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+.withdraw-text {
+  font-size: 12px;
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.withdraw-text:hover {
+  text-decoration: underline;
+  color: #777;
+}
+
+.withdraw-link {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.withdraw-link a {
+  font-size: 12px;
+  color: #999;
+  text-decoration: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  text-align: center;
+  min-width: 300px;
+}
+
+.modal-message {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.modal-actions button {
+  padding: 10px 24px;
+  font-size: 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-cancel-btn {
+  background: #f2f2f2;
+  border: none;
+}
+
+.modal-confirm-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+}
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  padding: 24px 0;
+  margin-top: 80px;
+}
