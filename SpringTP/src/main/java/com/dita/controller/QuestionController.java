@@ -26,6 +26,7 @@ public class QuestionController {
         return "question/list"; // → /WEB-INF/views/question/list.jsp
     }
     
+   
     @GetMapping("/questions/{id}")
     public String detailQuestion(@PathVariable("id") int id, Model model) {
         Optional<Question> question = questionRepository.findById(id);
