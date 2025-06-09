@@ -1,5 +1,6 @@
 package com.dita.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.dita.domain.Q_Language;
 import com.dita.domain.Question;
+import com.dita.repository.QLangRepository;
 import com.dita.repository.QuestionRepository;
 
 @Controller
@@ -24,6 +27,9 @@ public class CodingtestController {
 	@Autowired
     private QuestionRepository questionRepository;
 	
+	@Autowired
+	private QLangRepository qlangRepository;
+	
 
     // 기본문제 목록
     @GetMapping("/basic_Q")
@@ -32,7 +38,7 @@ public class CodingtestController {
         Model model) {
 
         int pageSize = 20;
-        Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("q_id").ascending());
+        Pageable pageable = PageRequest.of(page - 1, pageSize, Sort.by("qId").ascending());
 
         Page<Question> questionPage = questionRepository.findAll(pageable);
 
@@ -65,10 +71,25 @@ public class CodingtestController {
     public String showUserQuestions(Model model) {
         return "codingtest/user_Q";
     }
-
+    
     // 문제 풀이 페이지
     @GetMapping("/solve_Q")
-    public String solveQuestion(@RequestParam(required = false) String id, Model model) {
-        return "codingtest/solve_Q";
+    public String solveQuestion(@RequestParam("id") int id, Model model) {
+        Optional<Question> question = questionRepository.findById(id);
+        List<Q_Language> languages = qlangRepository.findByqId(question.get());
+        if (question.isPresent()) {
+            model.addAttribute("oneQuestion", question.get());
+            model.addAttribute("languages", languages);
+            return "codingtest/solve_Q";
+        } else {
+            return "error/404";
+        }
     }
+
+	/*
+	 * // 문제 풀이 페이지
+	 * 
+	 * @GetMapping("/solve_Q") public String solveQuestion(@RequestParam(required =
+	 * false) String id, Model model) { return "codingtest/solve_Q"; }
+	 */
 }

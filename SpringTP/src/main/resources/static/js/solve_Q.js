@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
   langSelector.addEventListener("change", (e) => {
     const lang = e.target.value;
     let mode = "text/x-csrc";
-    if (lang === "JAVA") mode = "text/x-java";
-    else if (lang === "Python") mode = "python";
-    else if (lang === "C") mode = "text/x-csrc";
+    if (lang === "java") mode = "text/x-java";
+    else if (lang === "py") mode = "python";
+    else if (lang === "cpp") mode = "text/x-c++src";
     codeMirrorInstance.setOption("mode", mode);
   });
 

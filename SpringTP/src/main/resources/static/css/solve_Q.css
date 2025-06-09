@@ -122,6 +122,10 @@ select {
   background-size: 10px;
 }
 
+#languageSelector{
+	width: 100px;
+}
+
 .submission-header {
   display: flex;
   justify-content: space-between;

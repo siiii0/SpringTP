@@ -151,11 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
     allRowsOriginal.forEach((row) => {
       row.classList.add("clickable-row");
       row.addEventListener("click", () => {
-        const title = row.querySelector("strong")?.innerText.trim();
-        if (!title) return;
+        const qId = row.dataset.id; // ← 여기서 data-id 값을 읽음
+        if (!qId) return;
 
-        const slug = encodeURIComponent(title.replace(/\s+/g, "_"));
-        window.location.href = `/codingtest/solve_Q?title=${slug}`;
+        window.location.href = `/codingtest/solve_Q?id=${qId}`;
       });
     });
   }
