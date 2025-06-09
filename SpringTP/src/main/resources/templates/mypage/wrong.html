@@ -1,0 +1,57 @@
+<!-- wrong.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>틀린 문제</title>
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/mypage_menu.css">
+<link rel="stylesheet" href="/css/my.css">
+<link rel="stylesheet" href="/css/edit.css">
+<link rel="stylesheet" href="/css/wrong.css">
+
+</head>
+<body>
+  <header th:replace="fragments/header :: header"></header>
+  <main class="mypage-container">
+    <div class="mypage-layout">
+      <div class="mypage-menu-bar">
+        <a href="/mypage" class="menu-link menu-selected">| 마이페이지</a>
+        <a href="/mypage/edit" class="menu-link">정보 수정</a>
+      </div>
+      <div class="mypage-content">
+        <h1 class="page-title">틀린 문제</h1>
+
+        <table class="submission-table">
+          <thead>
+            <tr>
+              <th>문제 번호</th>
+              <th>제목</th>
+              <th>언어</th>
+              <th>틀린 횟수</th>
+              <th>마지막 제출일</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>202</td>
+              <td class="problem-title">DFS 미로 탐색</td>
+              <td>C</td>
+              <td>3회</td>
+              <td>2025-06-08</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pagination">
+          <a href="#" class="page-link disabled">Prev</a>
+          <a href="#" class="page-link active">1</a>
+          <a href="#" class="page-link">2</a>
+          <a href="#" class="page-link">3</a>
+          <a href="#" class="page-link">Next</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

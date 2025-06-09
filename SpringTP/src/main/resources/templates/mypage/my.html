@@ -1,46 +1,82 @@
+
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>마이페이지 - everyCODE</title>
-  <link rel="stylesheet" href="/css/my.css">
-  <link rel="stylesheet" href="/css/header.css">
-<link rel="stylesheet" href="/css/mypage_header.css">
+<meta charset="UTF-8">
+<title>마이페이지 - everyCODE</title>
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/my.css">
+<link rel="stylesheet" href="/css/mypage_menu.css">
 </head>
 <body>
-  <header th:replace="fragments/header :: header"></header>
+	<header th:replace="fragments/header :: header"></header>
 
-  <main class="mypage-container">
-    <!-- 마이페이지 상단 사용자 정보 (프래그먼트 분리) -->
-    <div th:replace="fragments/mypage_header :: mypageHeader"></div>
+	<main class="mypage-container">
+		<div class="mypage-layout">
 
-    <!-- 통계 요약 박스 -->
-    <div class="summary-box">
-      <div class="tier-section">
-        <div class="tier-icon">
-          <img src="/images/tier-icon.png" alt="티어" class="tier-img">
-        </div>
-        <span class="tier-label">초급</span>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-box"><p>제출한 문제</p><strong>35</strong></div>
-        <div class="stat-box"><p>내가 낸 문제</p><strong>5</strong></div>
-        <div class="stat-box"><p>틀린 문제</p><strong>6</strong></div>
-        <div class="stat-box"><p>맞은 문제</p><strong>29</strong></div>
-      </div>
+			<div class="mypage-menu-bar">
+				<a href="/mypage" class="menu-link menu-selected">| 마이페이지</a> <a
+					href="/mypage/edit" class="menu-link">정보 수정</a>
+			</div>
+
+			<div class="mypage-content">
+  <div class="summary-header">
+    <div class="year-dropdown">
+      <button class="year-button">
+        연도
+        <span class="arrow">&#9662;</span>
+      </button>
+      <ul class="year-options">
+        <li>2025</li>
+        <li>2024</li>
+        <li>2023</li>
+      </ul>
     </div>
+  </div>
+				<div class="summary-box">
 
-    <!-- 월별 그래프 -->
-    <div class="graph-container">
-      <p class="year-label">2025</p>
-      <canvas id="activityChart" height="150"></canvas>
-      <p class="footer-label">©2025 everyCODE</p>
-    </div>
-  </main>
+					<div class="tier-section">
+						<div class="tier-icon">
+							<img src="/images/tier01.png" alt="티어" class="tier-img">
+						</div>
+						<span class="tier-label">골드</span>
+					</div>
 
-  <footer th:replace="fragments/footer :: footer"></footer>
+					<div class="stats-grid">
+						<div class="stat-box" onclick="location.href='/mypage/submission'">
+							<p>제출한 문제</p>
+							<strong>35</strong>
+						</div>
+						<div class="stat-box" onclick="location.href='/mypage/created'">
+							<p>내가 낸 문제</p>
+							<strong>5</strong>
+						</div>
+						<div class="stat-box" onclick="location.href='/mypage/wrong'">
+							<p>틀린 문제</p>
+							<strong>6</strong>
+						</div>
+						<div class="stat-box" onclick="location.href='/mypage/correct'">
+							<p>맞은 문제</p>
+							<strong>29</strong>
+						</div>
+					</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="/js/my.js" defer></script>
+				</div>
+
+				<div class="graph-container">
+					<p class="year-label">2025</p>
+					<canvas id="activityChart" height="150"></canvas>
+				</div>
+
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<p>2025ⓒeveryCODE</p>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="/js/my.js" defer></script>
 </body>
 </html>

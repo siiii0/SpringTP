@@ -1,0 +1,46 @@
+body {
+	margin: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+	background-color: #fff;
+	color: #222;
+}
+
+.mypage-menu-bar {
+	flex-shrink: 0;
+	width: 160px;
+	display: flex;
+	flex-direction: column;
+	margin-top: 40px;
+	gap: 10px;
+	margin-top: 24px;
+}
+
+.menu-link {
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  display: block;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.menu-selected {
+	color: #1abc9c;
+}
+
+.menu-link.menu-selected {
+	color: #2ac1bc;
+}
+
+.menu-link:hover {
+	text-decoration: underline;
+}
+
+footer {
+	text-align: center;
+	font-size: 12px;
+	color: #aaa;
+	padding: 24px 0;
+	margin-top: 80px;
+}
