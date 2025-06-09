@@ -86,10 +86,5 @@ public class CodingtestController {
         }
     }
 
-	/*
-	 * // 문제 풀이 페이지
-	 * 
-	 * @GetMapping("/solve_Q") public String solveQuestion(@RequestParam(required =
-	 * false) String id, Model model) { return "codingtest/solve_Q"; }
-	 */
+
 }

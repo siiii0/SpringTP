@@ -133,4 +133,45 @@ function makeDraggable(splitter, type) {
     document.addEventListener("mousemove", moveHandler);
     document.addEventListener("mouseup", stopDrag);
   });
+  
+  
+  document.querySelector('.submit-btn').addEventListener('click', function() {
+      const userCode = codeMirrorInstance.getValue();  // CodeMirror에서 사용자 코드 가져오기
+      const language = document.getElementById('languageSelector').value;  // 선택한 언어
+      const input = document.getElementById('inputEx').textContent;  // 문제 입력값
+      const qid = document.getElementById('problemView').getAttribute('data-qid');  // 문제 ID 가져오기
+	  
+      // 서버로 코드 제출 요청
+      fetch('/submit-code', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+              code: userCode,  // 사용자 코드
+              language: language,  // 프로그래밍 언어
+              input: input,  // 문제 입력값
+              qid: qid,  // 문제 ID
+			  userId: null,
+			  userType: null
+          })
+      })
+      .then(response => response.json())
+      .then(data => {
+          // 실행 결과를 결과 박스에 표시
+          document.querySelector('.result-box').textContent = `실행 결과: ${data.result}`;
+
+          // 정답 여부에 따라 피드백
+          if (data.isCorrect) {
+              document.querySelector('.modal-message').textContent = "정답입니다!";
+              document.getElementById('resultModal').style.display = 'block';
+          } else {
+              document.querySelector('.modal-message').textContent = "오답입니다!";
+              document.getElementById('resultModal').style.display = 'block';
+          }
+      })
+      .catch(error => console.error('Error:', error));
+  });
+
+
 }
