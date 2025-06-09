@@ -1,5 +1,6 @@
 package com.dita.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 
@@ -11,23 +12,26 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User_id_type implements Serializable{
-	
-    private String user_id;
-    private String user_type;
+public class User_id_type implements Serializable {
+
+    @Column(name = "user_id")   // 실제 DB 컬럼명
+    private String userId;
+
+    @Column(name = "user_type") // 실제 DB 컬럼명
+    private String userType;
 
     // equals() & hashCode()는 반드시 오버라이드해야 함
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User_id_type)) return false;
-        User_id_type userId = (User_id_type) o;
-        return Objects.equals(user_id, userId.user_id) &&
-               Objects.equals(user_type, userId.user_type);
+        User_id_type that = (User_id_type) o;
+        return Objects.equals(userId, that.userId) &&
+               Objects.equals(userType, that.userType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id, user_type);
+        return Objects.hash(userId, userType);
     }
 }
