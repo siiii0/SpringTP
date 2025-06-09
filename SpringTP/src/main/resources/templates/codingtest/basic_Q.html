@@ -25,19 +25,19 @@
 		
 		<select id="levelSelect" onchange="handleSelectChange(this)">
 		  <option selected>난이도</option>
-		  <option>Lv. 0</option>
-		  <option>Lv. 1</option>
-		  <option>Lv. 2</option>
-		  <option>Lv. 3</option>
-		  <option>Lv. 4</option>
-		  <option>Lv. 5</option>
+		  <option>LV. 0</option>
+		  <option>LV. 1</option>
+		  <option>LV. 2</option>
+		  <option>LV. 3</option>
+<!-- 		  <option>Lv. 4</option>
+		  <option>Lv. 5</option> -->
 		</select>
 		
 		<select id="languageSelect" onchange="handleSelectChange(this)">
 		  <option selected>언어</option>
 		  <option>Python</option>
 		  <option>JAVA</option>
-		  <option>C</option>
+		  <option>C++</option>
 		</select>
 		
 	  <input type="text" placeholder="문제 제목 검색">
@@ -59,7 +59,7 @@
         </tr>
       </thead>
       <tbody>
-	  <tr class="question-row" th:each="q : ${questions}" th:data-id="${q.q_id}">
+	  <tr class="question-row" th:each="q : ${questions}" th:data-id="${q.qId}">
       	<td>
         	<strong th:text="${q.q_title}">문제 제목</strong><br>
         	<span class="sub">코딩테스트 입문</span>
@@ -74,15 +74,15 @@
 	<div class="pagination">
 	  <ul style="list-style:none; display:flex; gap:5px; padding:0;">
 	    <li th:if="${currentPage > 1}">
-	      <a th:href="@{/basic_Q(page=${currentPage - 1})}">이전</a>
+	      <a th:href="@{/codingtest/basic_Q(page=${currentPage})}">이전</a>
 	    </li>
 	    <li th:each="i : ${#numbers.sequence(1, totalPages)}" 
 	        th:classappend="${i == currentPage} ? 'active'" 
 	        style="padding: 4px 8px; border:1px solid #ccc; cursor:pointer;">
-	      <a th:href="@{/basic_Q(page=${i})}" th:text="${i}">1</a>
+	      <a th:href="@{/codingtest/basic_Q(page=${i})}" th:text="${i}">1</a>
 	    </li>
 	    <li th:if="${currentPage < totalPages}">
-	      <a th:href="@{/basic_Q(page=${currentPage + 1})}">다음</a>
+	      <a th:href="@{/codingtest/basic_Q(page=${currentPage + 1})}">다음</a>
 	    </li>
 	  </ul>
 	</div>

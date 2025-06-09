@@ -52,6 +52,18 @@ public class Question {
 	@Column(nullable = true)
 	private int q_recommend = 0;
 	
+	@Column(columnDefinition = "text", nullable = true)
+	private String q_input;
+	
+	@Column(columnDefinition = "text", nullable = true)
+	private String q_output;
+	
+	@Column(columnDefinition = "text", nullable = true)
+	private String q_inputEx;
+	
+	@Column(columnDefinition = "text", nullable = true)
+	private String q_outputEx;
+	
 	
 	@ManyToOne
 	   @JoinColumns({

@@ -1,3 +1,4 @@
+
 package com.dita.controller;
 
 import com.dita.domain.Question;
@@ -15,25 +16,34 @@ import java.util.Optional;
 @Controller
 public class QuestionController {
 
-//    @Autowired
-//    private QuestionRepository questionRepository;
-//
-//    @GetMapping("/questions")
-//    public String listQuestions(Model model) {
-//        List<Question> questions = questionRepository.findAll();
-//        model.addAttribute("questions", questions);
-//        return "question/list"; // → /WEB-INF/views/question/list.jsp
-//    }
-//    
-//    @GetMapping("/questions/{id}")
-//    public String detailQuestion(@PathVariable("id") int id, Model model) {
-//        Optional<Question> question = questionRepository.findById(id);
-//        if (question.isPresent()) {
-//            model.addAttribute("question", question.get());
-//            return "question/detail";
-//        } else {
-//            return "error/404";
-//        }
-//    }
+    @Autowired
+    private QuestionRepository questionRepository;
+
+    @GetMapping("/questions")
+    public String listQuestions(Model model) {
+        List<Question> questions = questionRepository.findAll();
+        model.addAttribute("questions", questions);
+        return "question/list"; // → /WEB-INF/views/question/list.jsp
+    }
+    
+   
+    @GetMapping("/questions/{id}")
+    public String detailQuestion(@PathVariable("id") int id, Model model) {
+        Optional<Question> question = questionRepository.findById(id);
+        if (question.isPresent()) {
+            model.addAttribute("question", question.get());
+            return "question/detail";
+        } else {
+            return "error/404";
+        }
+    }
+    
+    @GetMapping("/questions/create")
+    public String showCreateForm(Model model) {
+        model.addAttribute("question", new Question());
+        return "question/create";
+    }
+
 
 }
+
