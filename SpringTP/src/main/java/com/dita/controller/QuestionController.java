@@ -35,5 +35,12 @@ public class QuestionController {
             return "error/404";
         }
     }
+    
+    @GetMapping("/questions/create")
+    public String showCreateForm(Model model) {
+        model.addAttribute("question", new Question());
+        return "question/create";
+    }
+
 
 }
