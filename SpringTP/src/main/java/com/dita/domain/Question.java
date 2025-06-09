@@ -58,10 +58,10 @@ public class Question {
 	@Column(columnDefinition = "text", nullable = true)
 	private String q_output;
 	
-	@Column(columnDefinition = "text", nullable = true)
+	@Column(columnDefinition = "text", nullable = true, name = "q_input_ex")
 	private String q_inputEx;
 	
-	@Column(columnDefinition = "text", nullable = true)
+	@Column(columnDefinition = "text", nullable = true, name = "q_output_ex")
 	private String q_outputEx;
 	
 	
