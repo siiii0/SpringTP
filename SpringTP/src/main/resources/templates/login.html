@@ -6,6 +6,21 @@
     <title>로그인 - everyCODE</title>
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
+    <style>
+        /* 로그인 페이지에서 헤더의 로그인/로그아웃 버튼 숨김 */
+        .header-right {
+            display: none !important;
+        }
+        
+        /* 소셜 로그인 구현 예정 메시지 스타일 */
+        .coming-soon {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -44,16 +59,22 @@
 
             <hr class="divider">
 
+            <!-- 소셜 로그인 섹션 -->
             <div class="social-login">
-			    <button class="social-btn google">
-			        <img src="/images/Google.png" alt="Google 로고">
-			        구글 계정으로 로그인
-			    </button>
-			    <button class="social-btn kakao">
-			        <img src="/images/Kakao.png" alt="Kakao 로고">
-			        카카오 계정으로 로그인
-			    </button>
-			</div>
+                <!-- 소셜 로그인 기능 구현 예정 메시지 -->
+                <p class="coming-soon">소셜 로그인 기능은 현재 구현 중입니다.</p>
+                
+                <!-- 
+                <button class="social-btn google">
+                    <img src="/images/Google.png" alt="Google 로고">
+                    구글 계정으로 로그인
+                </button>
+                <button class="social-btn kakao">
+                    <img src="/images/Kakao.png" alt="Kakao 로고">
+                    카카오 계정으로 로그인
+                </button>
+                -->
+            </div>
 
         </div>
 
