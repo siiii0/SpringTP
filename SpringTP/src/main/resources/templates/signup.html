@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="/css/signup.css">
     <link rel="stylesheet" href="/css/header.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* 회원가입 페이지에서 헤더의 로그인/로그아웃 버튼 숨김 */
+        .header-right {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -49,7 +55,7 @@
             <label for="school">학교/회사</label>
             <input type="text" id="school" name="school" placeholder="학교/회사를 입력하세요">
             
-            <button type="submit" class="login-btn" onclick="regi()">회원가입</button>
+            <button type="submit" class="login-btn">회원가입</button>
         </form>
     </div>
 
