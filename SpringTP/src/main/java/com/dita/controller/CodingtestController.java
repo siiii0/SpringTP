@@ -58,6 +58,7 @@ public class CodingtestController {
 
         return "codingtest/basic_Q";
     }
+	
 
     @GetMapping("/basic_Q/{id}")
     public String detailQuestion(@PathVariable("id") int id, Model model) {
