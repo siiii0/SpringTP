@@ -4,6 +4,59 @@ document.addEventListener("DOMContentLoaded", () => {
   makeDraggable(document.querySelector(".splitter.vertical"), "vertical");
   makeDraggable(document.querySelector(".splitter.horizontal"), "horizontal");
 
+  // 언어 선택에 따라 코드 문법 변경
+  const langSelector = document.getElementById("languageSelector");
+  const codeWrite = document.getElementById("codeEditor"); // textarea
+
+  // 언어 선택 시 코드 템플릿을 설정
+  function setCodeTemplate(lang) {
+      if (lang === "java") {
+          codeWrite.value = 
+          "//import를 추가하세요.\n" +
+          "\n" +
+		  "//클래스명은 반드시 Solution으로 하세요\n" +
+          "public class Solution {\n" +
+          "    public static void main(String[] args) {\n" +
+          "        // 여기에 코드를 작성하세요.\n" +
+          "    }\n" +
+          "}";
+      } else if (lang === "py") {
+          codeWrite.value = "#여기에 코드를 작성하세요."; // Python 코드 템플릿
+      } else if (lang === "cpp") {
+          codeWrite.value = 
+          "//import를 추가하세요.\n" +
+          "\n" +
+          "int main() {\n" +
+          "    // 여기에 코드를 작성하세요.\n" +
+          "}";
+      }
+  }
+
+  // 처음 언어 선택에 따라 코드 템플릿을 설정
+  setCodeTemplate(langSelector.value);
+ 
+
+  langSelector.addEventListener("change", (e) => {
+	const codeWrite = document.getElementById("codeEditor"); // textarea
+    const lang = e.target.value;
+    let mode = "text/x-csrc";
+
+	// 언어에 맞는 코드 템플릿과 문법 모드 설정
+	setCodeTemplate(lang);
+	
+    if (lang === "java"){ 
+		mode = "text/x-java";
+	}
+    else if (lang === "py"){ 
+		mode = "python";
+	}
+    else if (lang === "cpp"){
+		 mode = "text/x-c++src";
+	}
+    codeMirrorInstance.setOption("mode", mode);
+	codeMirrorInstance.setValue(codeWrite.value); // 코드 템플릿을 CodeMirror로 업데이트
+  });
+  
   // CodeMirror 초기화
   codeMirrorInstance = CodeMirror.fromTextArea(document.getElementById("codeEditor"), {
     lineNumbers: true,
@@ -16,17 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   codeMirrorInstance.setSize(null, "100%");
-
-  // 언어 선택에 따라 코드 문법 변경
-  const langSelector = document.getElementById("languageSelector");
-  langSelector.addEventListener("change", (e) => {
-    const lang = e.target.value;
-    let mode = "text/x-csrc";
-    if (lang === "java") mode = "text/x-java";
-    else if (lang === "py") mode = "python";
-    else if (lang === "cpp") mode = "text/x-c++src";
-    codeMirrorInstance.setOption("mode", mode);
-  });
 
   // 문제/제출 내역 toggle
   const toggleBtn = document.getElementById("toggleViewBtn");
@@ -51,12 +93,107 @@ document.addEventListener("DOMContentLoaded", () => {
       arrow.textContent = isOpen ? "▶" : "▼";
     });
   });
+  
+  //코드 실행버튼
+    document.querySelector(".submit-btns").addEventListener("click", () => {
+  	const userCode = codeMirrorInstance.getValue();  // CodeMirror에서 사용자 코드 가져오기
+  	const language = document.getElementById('languageSelector').value;  // 선택한 언어
+  	const input = document.getElementById('inputEx').textContent;  // 문제 입력값
+  	const qid = document.getElementById('problemView').getAttribute('data-qid');  // 문제 ID 가져오기
+  	console.log(userCode);
+  	console.log(language);
+  	console.log(input);
+  	console.log(qid);
+  	
+  	// userCode가 비어있으면 fetch 요청을 하지 않고 종료
+  	if (userCode.trim() === "") {
+  	    alert("코드를 작성해주세요!");  // 비어있을 때 경고 메시지
+  	    return;  // fetch 요청을 하지 않고 종료
+  	}
+
+  	// 서버로 코드 제출 요청
+  	fetch('/run_code', {
+  	    method: 'POST',
+  	    headers: {
+  	        'Content-Type': 'application/json',
+  	    },
+  	    body: JSON.stringify({
+  	        code: userCode,  // 사용자 코드
+  	        language: language,  // 프로그래밍 언어
+  	        input: input,  // 문제 입력값
+  	        qid: qid,  // 문제 ID
+  		  userId: 'skrjsdl03',
+  		  userType: '일반'
+  	    })
+  	})
+  	.then(response => response.json())
+  	.then(data => {
+  	    // 실행 결과를 결과 박스에 표시
+  		if(data.isCorrect){
+  			document.querySelector('.result-box').textContent = `실행 결과: 성공`;
+  		}else{
+  			document.querySelector('.result-box').textContent = `실행 결과: 실패`;
+  		}
+  	   /* document.querySelector('.result-box').textContent = `실행 결과: ${data.result}`;*/
+  		// 정답 여부에 따라 피드백
+  		/*showResultModal(data.isCorrect);*/
+  		// 코드 실행 후 코드 필드 비우기
+  /*		codeMirrorInstance.setValue('');  // CodeMirror 에디터 내용을 비웁니다.*/
+  		
+
+  	})
+  	.catch(error => console.error('Error:', error));
+    });
 
   // 제출 버튼 클릭 시 모달 표시
   document.querySelector(".submit-btn").addEventListener("click", () => {
-    // 임시 정답 판별 로직 (실제 채점 결과로 대체 가능)
-    const isCorrect = Math.random() > 0.5;
-    showResultModal(isCorrect);
+	const userCode = codeMirrorInstance.getValue();  // CodeMirror에서 사용자 코드 가져오기
+	const language = document.getElementById('languageSelector').value;  // 선택한 언어
+	const input = document.getElementById('inputEx').textContent;  // 문제 입력값
+	const qid = document.getElementById('problemView').getAttribute('data-qid');  // 문제 ID 가져오기
+	console.log(userCode);
+	console.log(language);
+	console.log(input);
+	console.log(qid);
+	
+	// userCode가 비어있으면 fetch 요청을 하지 않고 종료
+	if (userCode.trim() === "") {
+	    alert("코드를 작성해주세요!");  // 비어있을 때 경고 메시지
+	    return;  // fetch 요청을 하지 않고 종료
+	}
+
+	// 서버로 코드 제출 요청
+	fetch('/submit_code', {
+	    method: 'POST',
+	    headers: {
+	        'Content-Type': 'application/json',
+	    },
+	    body: JSON.stringify({
+	        code: userCode,  // 사용자 코드
+	        language: language,  // 프로그래밍 언어
+	        input: input,  // 문제 입력값
+	        qid: qid,  // 문제 ID
+		  userId: 'skrjsdl03',
+		  userType: '일반'
+	    })
+	})
+	.then(response => response.json())
+	.then(data => {
+	    // 실행 결과를 결과 박스에 표시
+		if(data.isCorrect){
+			document.querySelector('.result-box').textContent = `실행 결과: 성공`;
+		}else{
+			document.querySelector('.result-box').textContent = `실행 결과: 실패`;
+		}
+	   /* document.querySelector('.result-box').textContent = `실행 결과: ${data.result}`;*/
+		// 정답 여부에 따라 피드백
+		showResultModal(data.isCorrect);
+		// 코드 실행 후 코드 필드 비우기
+/*		codeMirrorInstance.setValue('');  // CodeMirror 에디터 내용을 비웁니다.*/
+		
+
+	})
+	.catch(error => console.error('Error:', error));
   });
 
   // 모달 제어 함수
@@ -134,44 +271,6 @@ function makeDraggable(splitter, type) {
     document.addEventListener("mouseup", stopDrag);
   });
   
-  
-  document.querySelector('.submit-btn').addEventListener('click', function() {
-      const userCode = codeMirrorInstance.getValue();  // CodeMirror에서 사용자 코드 가져오기
-      const language = document.getElementById('languageSelector').value;  // 선택한 언어
-      const input = document.getElementById('inputEx').textContent;  // 문제 입력값
-      const qid = document.getElementById('problemView').getAttribute('data-qid');  // 문제 ID 가져오기
-	  
-      // 서버로 코드 제출 요청
-      fetch('/submit-code', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-              code: userCode,  // 사용자 코드
-              language: language,  // 프로그래밍 언어
-              input: input,  // 문제 입력값
-              qid: qid,  // 문제 ID
-			  userId: null,
-			  userType: null
-          })
-      })
-      .then(response => response.json())
-      .then(data => {
-          // 실행 결과를 결과 박스에 표시
-          document.querySelector('.result-box').textContent = `실행 결과: ${data.result}`;
-
-          // 정답 여부에 따라 피드백
-          if (data.isCorrect) {
-              document.querySelector('.modal-message').textContent = "정답입니다!";
-              document.getElementById('resultModal').style.display = 'block';
-          } else {
-              document.querySelector('.modal-message').textContent = "오답입니다!";
-              document.getElementById('resultModal').style.display = 'block';
-          }
-      })
-      .catch(error => console.error('Error:', error));
-  });
 
 
 }

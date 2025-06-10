@@ -76,15 +76,22 @@ public class CodingtestController {
     @GetMapping("/solve_Q")
     public String solveQuestion(@RequestParam("id") int id, Model model) {
         Optional<Question> question = questionRepository.findById(id);
-        List<Q_Language> languages = qlangRepository.findByqId(question.get());
+
         if (question.isPresent()) {
+            // 디버깅을 위한 로그 출력
+            System.out.println("question q_id: " + question.get().getQId());
+
             model.addAttribute("oneQuestion", question.get());
+            List<Q_Language> languages = qlangRepository.findByqId(question.get());
             model.addAttribute("languages", languages);
+
             return "codingtest/solve_Q";
         } else {
             return "error/404";
         }
     }
+
+
 
 
 }
