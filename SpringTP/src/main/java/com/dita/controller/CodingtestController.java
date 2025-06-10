@@ -72,6 +72,12 @@ public class CodingtestController {
         return "codingtest/user_Q";
     }
     
+ // 사용자 출제 문제 작성 폼 페이지
+    @GetMapping("/create_Q")
+    public String showCreateUserQuestionForm(Model model) {
+        return "codingtest/create_Q";
+    }
+    
     // 문제 풀이 페이지
     @GetMapping("/solve_Q")
     public String solveQuestion(@RequestParam("id") int id, Model model) {
