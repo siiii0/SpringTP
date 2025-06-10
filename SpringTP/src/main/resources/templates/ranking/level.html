@@ -6,6 +6,25 @@
 <link rel="stylesheet" href="/css/level.css">
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/nav.css">
+<style>
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        text-align: center;
+    }
+    .alert-info {
+        color: #31708f;
+        background-color: #d9edf7;
+        border-color: #bce8f1;
+    }
+    .alert-warning {
+        color: #8a6d3b;
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+    }
+</style>
 </head>
 <body>
 	<header th:replace="fragments/header :: header"></header>
@@ -14,16 +33,23 @@
 	<main>
 		<h2 class="page-title">개인</h2>
 
+		<div th:if="${param.error}" class="alert alert-warning" th:text="${param.error}">
+		    오류가 발생했습니다.
+		</div>
+
 		<div class="table-container">
 			<div class="filter-bar">
-				<select>
-					<option selected>전체</option>
-					<option>브론즈</option>
-					<option>실버</option>
-					<option>골드</option>
-					<option>플래티넘</option>
-					<option>다이아</option>
-				</select>
+				<form id="gradeFilterForm" action="/ranking/level" method="get">
+					<input type="hidden" name="page" value="0">
+					<select name="grade" onchange="document.getElementById('gradeFilterForm').submit()">
+						<option value="전체" th:selected="${selectedGrade == '전체'}">전체</option>
+						<option value="브론즈" th:selected="${selectedGrade == '브론즈'}">브론즈</option>
+						<option value="실버" th:selected="${selectedGrade == '실버'}">실버</option>
+						<option value="골드" th:selected="${selectedGrade == '골드'}">골드</option>
+						<option value="플래티넘" th:selected="${selectedGrade == '플래티넘'}">플래티넘</option>
+						<option value="다이아" th:selected="${selectedGrade == '다이아'}">다이아</option>
+					</select>
+				</form>
 			</div>
 
 			<table class="ranking-table">
@@ -38,37 +64,38 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>돌인철</td>
-						<td>Gold</td>
-						<td>320</td>
-						<td>4420</td>						
-						<td>98.5%</td>
+					<tr th:each="userDetail : ${users}">
+						<td th:text="${userDetail.rank}">1</td>
+						<td th:text="${userDetail.user.idType.userId}">사용자</td>
+						<td th:text="${userDetail.user.userGrade}">등급</td>
+						<td th:text="${userDetail.solvedCount}">0</td>
+						<td th:text="${userDetail.user.userScore}">0</td>						
+						<td th:text="${userDetail.correctRate + '%'}">0.0%</td>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td>창건2</td>
-						<td>Silver</td>
-						<td>250</td>
-						<td>9647</td>
-						<td>92.3%</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>JDJ</td>
-						<td>Bronze</td>
-						<td>180</td>
-						<td>4570</td>						
-						<td>87.0%</td>
+					<!-- 데이터가 없을 경우 표시할 메시지 -->
+					<tr th:if="${users == null || users.empty}">
+						<td colspan="6" class="no-data">등록된 랭킹 정보가 없습니다.</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<div class="pagination">
-				<a href="#">Prev</a> <a href="#" class="active">1</a> <a href="#">2</a>
-				<a href="#">3</a> <a href="#">Next</a>
+			<div class="alert alert-info" th:if="${users != null && !users.empty && totalPages == 1}">
+                더 이상 표시할 랭킹 정보가 없습니다.
+            </div>
+
+			<div class="pagination" th:if="${totalPages > 1}">
+				<a th:if="${currentPage > 0}" th:href="@{/ranking/level(page=${currentPage - 1}, grade=${selectedGrade})}">Prev</a>
+				
+				<th:block th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+					<a th:if="${i >= currentPage - 3 and i <= currentPage + 3}"
+					   th:href="@{/ranking/level(page=${i}, grade=${selectedGrade})}"
+					   th:text="${i + 1}"
+					   th:class="${currentPage == i ? 'active' : ''}">1</a>
+				</th:block>
+				
+				<a th:if="${currentPage < totalPages - 1}" th:href="@{/ranking/level(page=${currentPage + 1}, grade=${selectedGrade})}">Next</a>
 			</div>
+		</div>
 	</main>
 
 	<footer th:replace="fragments/footer :: footer"></footer>

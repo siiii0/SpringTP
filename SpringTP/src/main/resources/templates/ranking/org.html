@@ -6,6 +6,25 @@
   <link rel="stylesheet" href="/css/org.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/nav.css">
+  <style>
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        text-align: center;
+    }
+    .alert-info {
+        color: #31708f;
+        background-color: #d9edf7;
+        border-color: #bce8f1;
+    }
+    .alert-warning {
+        color: #8a6d3b;
+        background-color: #fcf8e3;
+        border-color: #faebcc;
+    }
+  </style>
 </head>
 <body>
   <header th:replace="fragments/header :: header"></header>
@@ -14,13 +33,19 @@
   <main>
     <h2 class="page-title">학교/회사</h2>
 
+    <div th:if="${param.error}" class="alert alert-warning" th:text="${param.error}">
+        오류가 발생했습니다.
+    </div>
+
     <div class="filter-bar">
-      <select>
-        <option selected>전체</option>
-        <option>맞은 문제 많은 순</option>
-        <option>총 점수 높은 순</option>
-        <option>정답 비율 높은 순</option>
-      </select>
+      <form id="sortFilterForm" action="/ranking/org" method="get">
+        <input type="hidden" name="page" value="0">
+        <select name="sort" onchange="document.getElementById('sortFilterForm').submit()">
+          <option value="score" th:selected="${selectedSort == 'score'}">전체</option>
+          <option value="solved" th:selected="${selectedSort == 'solved'}">맞은 문제 많은 순</option>
+          <option value="rate" th:selected="${selectedSort == 'rate'}">정답 비율 높은 순</option>
+        </select>
+      </form>
     </div>
 
     <table class="ranking-table">
@@ -35,25 +60,37 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td><td>동의대학교 가야캠퍼스</td><td>21307</td><td>35059</td><td>2498721</td><td>50.954%</td>
+        <tr th:each="org : ${organizations}">
+          <td th:text="${org.rank}">1</td>
+          <td th:text="${org.orgName}">학교/회사명</td>
+          <td th:text="${org.memberCount}">0</td>
+          <td th:text="${org.solvedCount}">0</td>
+          <td th:text="${org.totalScore}">0</td>
+          <td th:text="${org.correctRate}">0.0%</td>
         </tr>
-        <tr>
-          <td>2</td><td>바이트 사이즈</td><td>50</td><td>24426</td><td>944185</td><td>52.161%</td>
-        </tr>
-        <tr>
-          <td>3</td><td>동의대학교 양정캠퍼스</td><td>756</td><td>20816</td><td>473218</td><td>50.989%</td>
+        <!-- 데이터가 없을 경우 표시할 메시지 -->
+        <tr th:if="${organizations == null || organizations.empty}">
+          <td colspan="6" class="no-data">등록된 랭킹 정보가 없습니다.</td>
         </tr>
       </tbody>
     </table>
 
-<div class="pagination">
-  <a href="#">Prev</a>
-  <a href="#" class="active">1</a>
-  <a href="#">2</a>
-  <a href="#">3</a>
-  <a href="#">Next</a>
-</div>
+    <div class="alert alert-info" th:if="${organizations != null && !organizations.empty && totalPages == 1}">
+        더 이상 표시할 랭킹 정보가 없습니다.
+    </div>
+
+    <div class="pagination" th:if="${totalPages > 1}">
+      <a th:if="${currentPage > 0}" th:href="@{/ranking/org(page=${currentPage - 1}, sort=${selectedSort})}">Prev</a>
+      
+      <th:block th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+        <a th:if="${i >= currentPage - 3 and i <= currentPage + 3}"
+           th:href="@{/ranking/org(page=${i}, sort=${selectedSort})}"
+           th:text="${i + 1}"
+           th:class="${currentPage == i ? 'active' : ''}">1</a>
+      </th:block>
+      
+      <a th:if="${currentPage < totalPages - 1}" th:href="@{/ranking/org(page=${currentPage + 1}, sort=${selectedSort})}">Next</a>
+    </div>
 
   </main>
 
