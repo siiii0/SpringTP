@@ -30,7 +30,6 @@ public class CodingtestController {
 	@Autowired
 	private QLangRepository qlangRepository;
 	
-
     // 기본문제 목록
     @GetMapping("/basic_Q")
     public String showBasicQuestions(
@@ -91,6 +90,5 @@ public class CodingtestController {
             return "error/404";
         }
     }
-
 
 }
