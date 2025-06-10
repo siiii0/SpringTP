@@ -84,6 +84,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 제출 내역 펼치기/닫기
   document.querySelectorAll(".submission-row").forEach((row, index) => {
+      row.addEventListener("click", () => {
+		const arrow = row.querySelector(".toggle-arrow");
+          const codeRow = document.querySelectorAll(".submission-code-row")[index];
+          const isOpen = codeRow.style.display === "table-row";
+		  
+		  arrow.textContent = isOpen ? "▶" : "▼";
+
+          // 숨겨진 tr을 클릭한 tr 바로 아래에 표시
+          codeRow.style.display = isOpen ? "none" : "table-row";
+          
+          // 클릭한 tr 바로 뒤에 숨겨진 tr을 보이게 함
+          if (!isOpen) {
+              row.insertAdjacentElement('afterend', codeRow);
+          }
+      });
+  });
+
+/*  document.querySelectorAll(".submission-row").forEach((row, index) => {
     row.addEventListener("click", () => {
       const arrow = row.querySelector(".toggle-arrow");
       const codeRow = document.querySelectorAll(".submission-code-row")[index];
@@ -92,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
       codeRow.style.display = isOpen ? "none" : "table-row";
       arrow.textContent = isOpen ? "▶" : "▼";
     });
-  });
+  });*/
   
   //코드 실행버튼
     document.querySelector(".submit-btns").addEventListener("click", () => {
@@ -162,39 +180,43 @@ document.addEventListener("DOMContentLoaded", () => {
 	    return;  // fetch 요청을 하지 않고 종료
 	}
 
-	// 서버로 코드 제출 요청
-	fetch('/submit_code', {
-	    method: 'POST',
-	    headers: {
-	        'Content-Type': 'application/json',
-	    },
-	    body: JSON.stringify({
-	        code: userCode,  // 사용자 코드
-	        language: language,  // 프로그래밍 언어
-	        input: input,  // 문제 입력값
-	        qid: qid,  // 문제 ID
-		  userId: 'skrjsdl03',
-		  userType: '일반'
-	    })
-	})
-	.then(response => response.json())
-	.then(data => {
-	    // 실행 결과를 결과 박스에 표시
-		if(data.isCorrect){
-			document.querySelector('.result-box').textContent = `실행 결과: 성공`;
-		}else{
-			document.querySelector('.result-box').textContent = `실행 결과: 실패`;
-		}
-	   /* document.querySelector('.result-box').textContent = `실행 결과: ${data.result}`;*/
-		// 정답 여부에 따라 피드백
-		showResultModal(data.isCorrect);
-		// 코드 실행 후 코드 필드 비우기
-/*		codeMirrorInstance.setValue('');  // CodeMirror 에디터 내용을 비웁니다.*/
-		
+	    // 세션에서 사용자 정보 가져오기
+	    fetch('/api/user/current')
+	        .then(response => response.json())
+	        .then(userData => {
+	            const userId = userData.username;  // 사용자 ID
+	            const userType = userData.userType;  // 사용자 타입
 
-	})
-	.catch(error => console.error('Error:', error));
-  });
+	            // 서버로 코드 제출 요청
+	            fetch('/submit_code', {
+	                method: 'POST',
+	                headers: {
+	                    'Content-Type': 'application/json',
+	                },
+	                body: JSON.stringify({
+	                    code: userCode,  // 사용자 코드
+	                    language: language,  // 프로그래밍 언어
+	                    input: input,  // 문제 입력값
+	                    qid: qid,  // 문제 ID
+	                    userId: userId,  // 로그인된 사용자 ID
+	                    userType: userType,  // 로그인된 사용자 타입
+	                })
+	            })
+	            .then(response => response.json())
+	            .then(data => {
+	                // 실행 결과를 결과 박스에 표시
+	                if (data.isCorrect) {
+	                    document.querySelector('.result-box').textContent = `실행 결과: 성공`;
+	                } else {
+	                    document.querySelector('.result-box').textContent = `실행 결과: 실패`;
+	                }
+	                // 정답 여부에 따라 피드백
+	                showResultModal(data.isCorrect);
+	            })
+	            .catch(error => console.error('Error:', error));
+	        })
+	        .catch(error => console.error('Error getting user data:', error));
+	});
 
   // 모달 제어 함수
   function showResultModal(isCorrect) {

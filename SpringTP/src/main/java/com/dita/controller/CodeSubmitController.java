@@ -101,7 +101,7 @@ public class CodeSubmitController {
             // 제출 기록 저장 (Submissions 테이블)
             Submissions submission = new Submissions();
             submission.setUser(user);  // 복합키를 사용한 User 객체 설정
-            submission.setQ_id(question);               // 문제 정보
+            submission.setQId(question);               // 문제 정보
             submission.setS_language(coderequest.getLanguage()); // 언어 정보
             submission.setS_code(coderequest.getCode()); // 사용자가 제출한 코드
             submission.setS_isCorrect(isCorrect ? "Y" : "N");  // 정답 여부 (Y: 정답, N: 오답)
