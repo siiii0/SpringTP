@@ -1,0 +1,171 @@
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #fff;
+  color: #222;
+}
+
+.create-container {
+  width: 60%;
+  margin: 40px auto;
+}
+
+.page-title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 32px;
+  font-weight: bold;
+}
+
+.create-form label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: bold;
+}
+
+.create-form input[type="text"],
+.create-form select,
+.create-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9fcff;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.create-form textarea {
+  height: 100px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.half {
+  flex: 1;
+  min-width: 200px;
+}
+
+#add-example {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9fcff;
+  cursor: pointer;
+}
+
+.image-upload-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.preview-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.preview-container img {
+  width: 115px;
+  height: 115px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.image-upload.add-box {
+  width: 115px;
+  height: 115px;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  background-color: #f9fcff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.image-upload input[type="file"] {
+  display: none; 
+}
+
+.image-upload label {
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.plus-icon {
+  font-size: 32px;
+  color: #666;
+}
+
+.submit-btn {
+  display: block;
+  margin: 24px auto 0;
+  padding: 10px 24px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  width: auto;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 32px 48px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.modal-message {
+  margin-bottom: 24px;
+}
+
+.modal-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.modal-button:hover {
+  background-color: #333;
+}
+
+footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 12px;
+  color: #999;
+  border-top: 1px solid #eee;
+  margin-top: 48px;
+}
