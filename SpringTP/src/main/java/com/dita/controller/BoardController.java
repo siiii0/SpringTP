@@ -41,6 +41,8 @@ public class BoardController {
 	public String showQnaBoard(Model model) {
 		return "board/qna";
 	}
+	
+	
 
 	// 공지사항
 	@GetMapping("/notice")
@@ -101,5 +103,29 @@ public class BoardController {
 		model.addAttribute("oneBoardCMT", oneBoardCMT);
 		return "board/post";
 	}
+	
+	// Q&A 게시판 게시글 상세보기
+	@GetMapping("/qna/view")
+	public String showQnaPost(@RequestParam("id") int id, Model model) {
+		System.out.println("view 진입");
+	    Board oneBoard = boardRepository.findById(id);
+	    List<BoardCmt> oneBoardCMT = boardCMTRepository.findBybId(oneBoard);
+	    model.addAttribute("oneBoard", oneBoard);
+	    model.addAttribute("oneBoardCMT", oneBoardCMT);
+	    return "board/post_qna"; // templates/board/post_qna.html
+	}
+
+
+	// 오류 제보 게시판 게시글 상세보기
+	@GetMapping("/error/view")
+	public String showErrorPost(@RequestParam("id") int id, Model model) {
+	    Board oneBoard = boardRepository.findById(id);
+	    List<BoardCmt> oneBoardCMT = boardCMTRepository.findBybId(oneBoard);
+	    model.addAttribute("oneBoard", oneBoard);
+	    model.addAttribute("oneBoardCMT", oneBoardCMT);
+	    return "board/post_error";
+	}
+
+
 
 }
