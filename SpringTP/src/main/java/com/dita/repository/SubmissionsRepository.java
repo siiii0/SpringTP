@@ -25,19 +25,19 @@ public interface SubmissionsRepository extends JpaRepository<Submissions, Intege
     List<Submissions> findCorrectSubmissionsByUserIdAndType(@Param("userId") String userId, @Param("userType") String userType);
     
     // 특정 사용자가 맞은 고유한 문제 목록 조회 - User 객체 직접 사용
-    @Query("SELECT DISTINCT s.q_id FROM Submissions s WHERE s.user = :user AND s.s_isCorrect = 'Y'")
+    @Query("SELECT DISTINCT s.qid FROM Submissions s WHERE s.user = :user AND s.s_isCorrect = 'Y'")
     List<Question> findDistinctCorrectQuestionsByUser(@Param("user") User user);
     
     // 특정 사용자가 맞은 고유한 문제 목록 조회 - 복합키 사용 (대체 메소드)
-    @Query("SELECT DISTINCT s.q_id FROM Submissions s WHERE s.user.idType.userId = :userId AND s.user.idType.userType = :userType AND s.s_isCorrect = 'Y'")
+    @Query("SELECT DISTINCT s.qid FROM Submissions s WHERE s.user.idType.userId = :userId AND s.user.idType.userType = :userType AND s.s_isCorrect = 'Y'")
     List<Question> findDistinctCorrectQuestionsByUserIdAndType(@Param("userId") String userId, @Param("userType") String userType);
     
     // 특정 사용자가 맞은 고유한 문제 수 카운트
-    @Query("SELECT COUNT(DISTINCT s.q_id) FROM Submissions s WHERE s.user.idType.userId = :userId AND s.user.idType.userType = :userType AND s.s_isCorrect = 'Y'")
+    @Query("SELECT COUNT(DISTINCT s.qid) FROM Submissions s WHERE s.user.idType.userId = :userId AND s.user.idType.userType = :userType AND s.s_isCorrect = 'Y'")
     long countDistinctCorrectQuestionsByUserIdAndType(@Param("userId") String userId, @Param("userType") String userType);
     
     // 특정 학교/회사에 속한 사용자들이 맞은 고유한 문제 수 조회
-    @Query("SELECT COUNT(DISTINCT s.q_id) FROM Submissions s JOIN s.user u WHERE u.userSchool = :orgName AND s.s_isCorrect = 'Y'")
+    @Query("SELECT COUNT(DISTINCT s.qid) FROM Submissions s JOIN s.user u WHERE u.userSchool = :orgName AND s.s_isCorrect = 'Y'")
     long countDistinctCorrectQuestionsByOrg(@Param("orgName") String orgName);
     
     // 특정 학교/회사에 속한 사용자들의 총 제출 수

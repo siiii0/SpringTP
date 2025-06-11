@@ -37,7 +37,7 @@ public class Submissions {
     @JoinColumns({
         @JoinColumn(name = "q_id", referencedColumnName = "q_id"),
     })
-	private Question q_id;
+	private Question qid;
 	
 	@Column(columnDefinition = "varchar(20)", nullable = false)
 	private String s_language;
