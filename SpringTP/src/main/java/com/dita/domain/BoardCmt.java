@@ -30,7 +30,7 @@ public class BoardCmt {
     @JoinColumns({
         @JoinColumn(name = "b_id", referencedColumnName = "b_id"),
     })
-	private Board b_id;
+	private Board bId;
 	
 	@Column(columnDefinition = "text", nullable = false)
 	private String bc_content;
@@ -38,12 +38,22 @@ public class BoardCmt {
 	@Column(nullable = false)
 	private LocalDateTime answered_at;
 	
-    @ManyToOne
-    @JoinColumns({
-        @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
-        @JoinColumn(name = "user_type", referencedColumnName = "user_type")
-    })
-    private User user;
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumns({
+	 * 
+	 * @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+	 * 
+	 * @JoinColumn(name = "user_type", referencedColumnName = "user_type") })
+	 * private User user;
+	 */
+	
+    @Column(columnDefinition = "varchar(30)", nullable = true)
+    private String user_id;
+    
+    @Column(columnDefinition = "varchar(10)", nullable = true)
+    private String user_type;
 	
 	@Column(nullable = true)
 	private int bc_likes = 0;
