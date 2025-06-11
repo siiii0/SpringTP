@@ -27,7 +27,7 @@
             <!-- CSRF 토큰 (SecurityConfig에서 CSRF 보호 활성화 시 필요) -->
             <input type="hidden" name="_csrf" th:if="${_csrf != null}" th:value="${_csrf.token}" />
             
-            <label for="username">아이디 <span class="required">*</span></label>
+            <label for="username">아이디 <span class="required"></span></label>
 
             <div id="user">
 	            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요" required>
@@ -36,20 +36,20 @@
             <div id="idCheckResult"></div>
             <small class="form-text text-muted">5~12자의 영문 소문자와 숫자만 사용 가능합니다.</small>
 		
-            <label for="password">비밀번호 <span class="required">*</span></label>
+            <label for="password">비밀번호 <span class="required"></span></label>
             <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
             <small class="form-text text-muted">
                 비밀번호는 8~16자리이며, 영문 대/소문자, 숫자, 특수문자를 각각 1개 이상 포함해야 합니다.
             </small>
 
-            <label for="confirm-password">비밀번호 확인 <span class="required">*</span></label>
+            <label for="confirm-password">비밀번호 확인 <span class="required"></span></label>
             <input type="password" id="confirm-password" placeholder="비밀번호를 다시 입력하세요" required>
             <div id="passwordMatchResult"></div>
 
-            <label for="name">이름 <span class="required">*</span></label>
+            <label for="name">이름 <span class="required"></span></label>
             <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
 
-            <label for="email">이메일 <span class="required">*</span></label>
+            <label for="email">이메일 <span class="required"></span></label>
             <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
             
             <label for="school">학교/회사</label>
