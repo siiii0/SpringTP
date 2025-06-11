@@ -1,6 +1,7 @@
 package com.dita.service;
 
 import com.dita.domain.User;
+import com.dita.domain.User_id_type;
 import com.dita.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -9,6 +10,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +66,81 @@ public class UserService {
         } catch (Exception e) {
             logger.error("아이디 중복 확인 중 오류 발생: {}", e.getMessage(), e);
             throw new RuntimeException("아이디 중복 확인 중 오류가 발생했습니다.", e);
+        }
+    }
+    
+    /**
+     * 이메일로 사용자 아이디 찾기
+     */
+    @Transactional(readOnly = true)
+    public String findUserIdByEmail(String email) {
+        try {
+            logger.info("이메일로 사용자 아이디 찾기: {}", email);
+            return userRepository.findUserIdByEmail(email).orElse(null);
+        } catch (Exception e) {
+            logger.error("이메일로 사용자 아이디 찾기 중 오류 발생: {}", e.getMessage(), e);
+            throw new RuntimeException("사용자 아이디 찾기 중 오류가 발생했습니다.", e);
+        }
+    }
+    
+    /**
+     * 사용자 아이디와 이메일 일치 여부 확인
+     */
+    @Transactional(readOnly = true)
+    public boolean validateUserIdAndEmail(String userId, String email) {
+        try {
+            logger.info("사용자 아이디와 이메일 검증: userId={}, email={}", userId, email);
+            Optional<User> userOpt = userRepository.findByUserId(userId);
+            
+            if (userOpt.isPresent()) {
+                User user = userOpt.get();
+                logger.info("사용자 찾음: userId={}, 저장된 이메일={}, 입력 이메일={}", 
+                        userId, user.getUserEmail(), email);
+                boolean match = email.equals(user.getUserEmail());
+                logger.info("이메일 일치 여부: {}", match);
+                return match;
+            } else {
+                logger.warn("사용자 ID를 찾을 수 없음: {}", userId);
+            }
+            
+            return false;
+        } catch (Exception e) {
+            logger.error("사용자 인증 중 오류 발생: {}", e.getMessage(), e);
+            throw new RuntimeException("사용자 인증 중 오류가 발생했습니다.", e);
+        }
+    }
+    
+    /**
+     * 비밀번호 재설정
+     */
+    @Transactional
+    public void updatePassword(String userId, String newPassword) {
+        try {
+            logger.info("비밀번호 재설정: userId={}", userId);
+            
+            Optional<User> userOpt = userRepository.findByUserId(userId);
+            if (!userOpt.isPresent()) {
+                logger.error("사용자 ID를 찾을 수 없음: {}", userId);
+                throw new RuntimeException("사용자를 찾을 수 없습니다.");
+            }
+            
+            User user = userOpt.get();
+            
+            // 비밀번호 암호화
+            String encodedPassword = passwordEncoder.encode(newPassword);
+            
+            // 암호화된 비밀번호가 데이터베이스 컬럼 크기를 초과하는지 확인
+            if (encodedPassword.length() > MAX_PASSWORD_LENGTH) {
+                logger.warn("암호화된 비밀번호 길이가 너무 깁니다: {} 문자", encodedPassword.length());
+                encodedPassword = encodedPassword.substring(0, MAX_PASSWORD_LENGTH);
+            }
+            
+            user.setUserPwd(encodedPassword);
+            userRepository.save(user);
+            logger.info("비밀번호 재설정 완료: userId={}", userId);
+        } catch (Exception e) {
+            logger.error("비밀번호 재설정 중 오류 발생: {}", e.getMessage(), e);
+            throw new RuntimeException("비밀번호 재설정 중 오류가 발생했습니다.", e);
         }
     }
 }
