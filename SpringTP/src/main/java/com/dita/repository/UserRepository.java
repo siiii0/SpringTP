@@ -28,16 +28,20 @@ public interface UserRepository extends JpaRepository<User, User_id_type> {
     @Query("SELECT CASE WHEN COUNT(u) > 0 THEN true ELSE false END FROM User u WHERE u.idType.userId = :userId")
     boolean existsByUserId(@Param("userId") String userId);
     
-    // 개인 랭킹 - 점수가 높은 순으로 페이징 처리
+    // 개인 랭킹 - 총 점수 높은 순으로 페이징 처리
     @Query("SELECT u FROM User u WHERE u.userWd = 'N' ORDER BY u.userScore DESC")
     Page<User> findAllUsersByScoreDesc(Pageable pageable);
     
-    // 특정 등급의 사용자 목록 - 점수 높은 순
-    @Query("SELECT u FROM User u WHERE u.userWd = 'N' AND u.userGrade = :grade ORDER BY u.userScore DESC")
+    // 특정 등급의 사용자 목록 - 총 점수 높은 순 (등급이 null인 경우 '일반'으로 처리)
+    @Query("SELECT u FROM User u WHERE u.userWd = 'N' AND (u.userGrade = :grade OR (:grade = '일반' AND (u.userGrade IS NULL OR u.userGrade = '일반'))) ORDER BY u.userScore DESC")
     Page<User> findUsersByGrade(@Param("grade") String grade, Pageable pageable);
     
     // 소속별 랭킹을 위한 조회 - 같은 학교/회사별로 그룹화하고 점수 합산
     @Query("SELECT u.userSchool, COUNT(u), SUM(u.userScore) FROM User u WHERE u.userWd = 'N' AND u.userSchool IS NOT NULL GROUP BY u.userSchool ORDER BY SUM(u.userScore) DESC")
     Page<Object[]> findUsersByOrganizationRanking(Pageable pageable);
+    
+    // 디버깅: 모든 사용자의 등급 출력
+    @Query("SELECT u.idType.userId, u.userGrade FROM User u WHERE u.userWd = 'N'")
+    List<Object[]> findAllUsersWithGrades();
 }
 

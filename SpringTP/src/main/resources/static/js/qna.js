@@ -12,10 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
     item.addEventListener("click", () => {
       const postId = item.getAttribute("data-id");
       if (postId) {
-        window.location.href = `/board/post?id=${postId}`;
+        window.location.href = `/board/qna/view?id=${postId}`;
       }
     });
   });
+
 
   // 페이지네이션
   const pagination = document.querySelector(".pagination");

@@ -14,11 +14,6 @@
         border-radius: 4px;
         text-align: center;
     }
-    .alert-info {
-        color: #31708f;
-        background-color: #d9edf7;
-        border-color: #bce8f1;
-    }
     .alert-warning {
         color: #8a6d3b;
         background-color: #fcf8e3;
@@ -43,6 +38,7 @@
 					<input type="hidden" name="page" value="0">
 					<select name="grade" onchange="document.getElementById('gradeFilterForm').submit()">
 						<option value="전체" th:selected="${selectedGrade == '전체'}">전체</option>
+						<option value="일반" th:selected="${selectedGrade == '일반'}">일반</option>
 						<option value="브론즈" th:selected="${selectedGrade == '브론즈'}">브론즈</option>
 						<option value="실버" th:selected="${selectedGrade == '실버'}">실버</option>
 						<option value="골드" th:selected="${selectedGrade == '골드'}">골드</option>
@@ -67,7 +63,7 @@
 					<tr th:each="userDetail : ${users}">
 						<td th:text="${userDetail.rank}">1</td>
 						<td th:text="${userDetail.user.idType.userId}">사용자</td>
-						<td th:text="${userDetail.user.userGrade}">등급</td>
+						<td th:text="${userDetail.user.userGrade != null ? userDetail.user.userGrade : '일반'}">등급</td>
 						<td th:text="${userDetail.solvedCount}">0</td>
 						<td th:text="${userDetail.user.userScore}">0</td>						
 						<td th:text="${userDetail.correctRate + '%'}">0.0%</td>
@@ -79,21 +75,47 @@
 				</tbody>
 			</table>
 
-			<div class="alert alert-info" th:if="${users != null && !users.empty && totalPages == 1}">
-                더 이상 표시할 랭킹 정보가 없습니다.
-            </div>
-
-			<div class="pagination" th:if="${totalPages > 1}">
-				<a th:if="${currentPage > 0}" th:href="@{/ranking/level(page=${currentPage - 1}, grade=${selectedGrade})}">Prev</a>
-				
-				<th:block th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
-					<a th:if="${i >= currentPage - 3 and i <= currentPage + 3}"
-					   th:href="@{/ranking/level(page=${i}, grade=${selectedGrade})}"
-					   th:text="${i + 1}"
-					   th:class="${currentPage == i ? 'active' : ''}">1</a>
-				</th:block>
-				
-				<a th:if="${currentPage < totalPages - 1}" th:href="@{/ranking/level(page=${currentPage + 1}, grade=${selectedGrade})}">Next</a>
+			<div class="pagination" th:if="${totalPages > 0}">
+				<ul>
+					<!-- 이전 버튼 -->
+					<li th:class="${currentPage <= 0 ? 'disabled' : ''}">
+						<a th:if="${currentPage > 0}" th:href="@{/ranking/level(page=${currentPage - 1}, grade=${selectedGrade})}">이전</a>
+						<span th:if="${currentPage <= 0}">이전</span>
+					</li>
+					
+					<!-- 첫 페이지 -->
+					<li th:class="${currentPage == 0 ? 'active' : ''}">
+						<a th:href="@{/ranking/level(page=0, grade=${selectedGrade})}">1</a>
+					</li>
+					
+					<!-- 첫 페이지 이후 생략 표시 -->
+					<li class="ellipsis" th:if="${currentPage > 3}">
+						<span>...</span>
+					</li>
+					
+					<!-- 현재 페이지 주변 페이지들 -->
+					<li th:each="i : ${#numbers.sequence(1, totalPages - 1)}" 
+						th:if="${i >= currentPage - 2 && i <= currentPage + 2 && i > 0 && i < totalPages - 1}"
+						th:class="${i == currentPage ? 'active' : ''}">
+						<a th:href="@{/ranking/level(page=${i}, grade=${selectedGrade})}" th:text="${i + 1}">2</a>
+					</li>
+					
+					<!-- 마지막 페이지 이전 생략 표시 -->
+					<li class="ellipsis" th:if="${currentPage < totalPages - 4 && totalPages > 5}">
+						<span>...</span>
+					</li>
+					
+					<!-- 마지막 페이지 (2페이지 이상인 경우에만) -->
+					<li th:if="${totalPages > 1}" th:class="${currentPage == totalPages - 1 ? 'active' : ''}">
+						<a th:href="@{/ranking/level(page=${totalPages - 1}, grade=${selectedGrade})}" th:text="${totalPages}">마지막</a>
+					</li>
+					
+					<!-- 다음 버튼 -->
+					<li th:class="${currentPage >= totalPages - 1 ? 'disabled' : ''}">
+						<a th:if="${currentPage < totalPages - 1}" th:href="@{/ranking/level(page=${currentPage + 1}, grade=${selectedGrade})}">다음</a>
+						<span th:if="${currentPage >= totalPages - 1}">다음</span>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</main>

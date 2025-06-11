@@ -14,13 +14,15 @@
   <main>
     <h2 class="page-title">기본 문제</h2>
 
+<input type="hidden" id="currentPage" value="${currentPage}">
+
     <div class="filters">
 	  <select id="sortSelect" onchange="handleSelectChange(this)">
 		  <option selected>정렬 기준</option>
 		  <option>정답률 높은 순</option>
 		  <option>정답률 낮은 순</option>
 		  <option>완료한 사람 많은 순</option>
-		  <option>최신 등록 순</option>
+<!-- 		  <option>최신 등록 순</option> -->
 		</select>
 		
 		<select id="levelSelect" onchange="handleSelectChange(this)">
@@ -29,8 +31,6 @@
 		  <option>LV. 1</option>
 		  <option>LV. 2</option>
 		  <option>LV. 3</option>
-<!-- 		  <option>Lv. 4</option>
-		  <option>Lv. 5</option> -->
 		</select>
 		
 		<select id="languageSelect" onchange="handleSelectChange(this)">
@@ -70,8 +70,29 @@
       </tr>
       </tbody>  
     </table>
+
+
+    <!-- 페이지네이션 버튼 -->
+<div class="pagination">
+  <!-- 이전 버튼 -->
+  <a th:if="${currentPage > 1}" 
+     th:href="@{/codingtest/basic_Q(page=${currentPage - 1})}">Prev</a>
+
+  <!-- 페이지 숫자 목록 -->
+  <a th:each="i : ${#numbers.sequence(1, totalPages)}"
+     th:href="@{/codingtest/basic_Q(page=${i})}"
+     th:text="${i}"
+     th:classappend="${i == currentPage} ? 'active'">1</a>
+
+  <!-- 다음 버튼 -->
+  <a th:if="${currentPage < totalPages}" 
+     th:href="@{/codingtest/basic_Q(page=${currentPage + 1})}">Next</a>
+</div>
+
+
+
     
-	<div class="pagination">
+<!-- 	<div class="pagination">
 	  <ul style="list-style:none; display:flex; gap:5px; padding:0;">
 	    <li th:if="${currentPage > 1}">
 	      <a th:href="@{/codingtest/basic_Q(page=${currentPage})}">이전</a>
@@ -85,7 +106,7 @@
 	      <a th:href="@{/codingtest/basic_Q(page=${currentPage + 1})}">다음</a>
 	    </li>
 	  </ul>
-	</div>
+	</div> -->
 	
   </main>
 

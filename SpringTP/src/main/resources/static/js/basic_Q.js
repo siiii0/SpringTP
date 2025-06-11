@@ -45,6 +45,26 @@ function clearAllTags() {
   applyFilterAndSort();
 }
 
+/*function handleSelectChange(selectElement) {
+    const value = selectElement.value;
+    const label = selectElement.options[0].text;
+    const selectId = selectElement.id;
+
+    if (value === label) return;
+
+    const currentPage = document.getElementById("currentPage").value;  // 현재 페이지 번호 가져오기
+    const sortBy = document.getElementById("sortSelect").value;  // 선택된 정렬 기준
+
+    // 정렬 기준을 URL 인코딩 처리
+    const encodedSortBy = encodeURIComponent(sortBy);
+
+    // 정렬 기준을 서버로 보내기 위해 URL 갱신
+    location.href = `/codingtest/basic_Q?page=${currentPage}&sortBy=${encodedSortBy}`;
+}*/
+
+
+
+
 function handleSelectChange(selectElement) {
   const value = selectElement.value;
   const label = selectElement.options[0].text;

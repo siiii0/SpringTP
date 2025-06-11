@@ -27,17 +27,14 @@ import java.util.Optional;
 import java.util.List;
 
 @RestController
-@RequestMapping("/submit_code")
-public class CodeSubmitController {
+@RequestMapping("/run_code")
+public class CodeRunController {
 
     @Autowired
     private QuestionRepository questionRepository;
 
     @Autowired
     private QLangRepository qLangRepository;  // 수정된 repository 이름
-
-    @Autowired
-    private SubmissionsRepository submissionsRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -97,18 +94,6 @@ public class CodeSubmitController {
             if(answer.equals(result))
             	isCorrect = true;
             
-
-            // 제출 기록 저장 (Submissions 테이블)
-            Submissions submission = new Submissions();
-            submission.setUser(user);  // 복합키를 사용한 User 객체 설정
-
-            submission.setQId(question);               // 문제 정보
-            submission.setS_language(coderequest.getLanguage()); // 언어 정보
-            submission.setS_code(coderequest.getCode()); // 사용자가 제출한 코드
-            submission.setS_isCorrect(isCorrect ? "Y" : "N");  // 정답 여부 (Y: 정답, N: 오답)
-            submission.setS_runTime(1000);              // 실행 시간 (예시: 1000ms)
-            submission.setSubmitted_at(LocalDateTime.now()); // 제출 일시
-            submissionsRepository.save(submission); // 데이터베이스에 저장
 
             response.put("isCorrect", isCorrect);
             response.put("result", result);
