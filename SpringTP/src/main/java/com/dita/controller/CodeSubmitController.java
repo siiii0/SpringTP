@@ -101,6 +101,7 @@ public class CodeSubmitController {
             // 제출 기록 저장 (Submissions 테이블)
             Submissions submission = new Submissions();
             submission.setUser(user);  // 복합키를 사용한 User 객체 설정
+
             submission.setQId(question);               // 문제 정보
             submission.setS_language(coderequest.getLanguage()); // 언어 정보
             submission.setS_code(coderequest.getCode()); // 사용자가 제출한 코드

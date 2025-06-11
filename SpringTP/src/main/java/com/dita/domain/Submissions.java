@@ -36,8 +36,10 @@ public class Submissions {
 	@ManyToOne
     @JoinColumns({
         @JoinColumn(name = "q_id", referencedColumnName = "q_id"),
+
     }) 
 	private Question qId;
+
 	
 	@Column(columnDefinition = "varchar(20)", nullable = false)
 	private String s_language;
