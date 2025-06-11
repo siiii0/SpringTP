@@ -30,8 +30,8 @@ public class Q_Language {
     })
 	private Question qId;
 	
-	@Column(columnDefinition = "varchar(20)", nullable = false)
-	private String q_language;
+	@Column(columnDefinition = "varchar(20)", nullable = false, name = "q_language")
+	private String QLanguage;
 	
 	@Column(columnDefinition = "text", nullable = false)
 	private String q_answer;

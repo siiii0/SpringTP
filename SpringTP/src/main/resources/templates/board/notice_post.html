@@ -20,23 +20,24 @@
 			<div class="post-header">
 				<div class="author-info">
 					<img src="/images/profile01.png" alt="프로필" class="profile-img">
-					<strong class="post-author" th:text="${post.writer}">관리자</strong>
+					<strong class="post-author">관리자</strong>
 				</div>
 				<div class="post-meta-right">
-					<span class="post-date" th:text="${post.createdAt}">2025-06-06</span>
+					<span class="post-date" th:text="${#temporals.format(post.created_at, 'yyyy-MM-dd')}">2025-06-06</span>
 					<span class="post-views">조회수 <span
-						th:text="${post.viewCount}">0</span></span>
+						th:text="${post.b_views}">0</span></span>
 				</div>
 			</div>
 
 			<!-- 제목 -->
-			<h3 class="post-title" th:text="${post.title}">📌 [중요] 2025년
-				everyCODE 경진대회 일정 안내 📌</h3>
+			<h3 class="post-title" th:text="${post.BIsPinned} == 'Y' ? '📌 [중요] ' + ${post.b_title} : '[안내] ' + ${post.b_title}">📌 [중요] 2025년 everyCODE 경진대회 일정 안내 📌</h3>
 			<hr class="title-divider">
 
 			<!-- 본문 -->
 			<div class="post-content"
-				th:utext="${#strings.replace(post.content, '\n', '<br/>')}"></div>
+				th:text="${post.b_content}"></div>
+<!-- 			<div class="post-content"
+				th:utext="${#strings.replace(post.content, '\n', '<br/>')}"></div> -->
 
 		</section>
 

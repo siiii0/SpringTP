@@ -24,18 +24,18 @@
 	</div>
 
 	<ul class="post-list">
-	  <li class="post-item" data-id="1">
+	  <li class="post-item" th:each="free : ${free}" th:data-id="${free.b_id}">
 	    <div class="post-title">
-	      <strong>2번 틀리시는 분 보세요</strong>
-	      <span class="new-label">N</span>
+	      <strong th:text="${free.b_title}">2번 틀리시는 분 보세요</strong>
+	      <!-- <span class="new-label">N</span> -->
 	    </div>
-	    <p class="post-preview">이분석 최대 크기 설정이 잘못됐을 겁니다. 대충 끝점을 4 * 10^14로 맞추세요</p>
+	    <p class="post-preview" th:text="${free.b_content}">이분석 최대 크기 설정이 잘못됐을 겁니다. 대충 끝점을 4 * 10^14로 맞추세요</p>
 	    <div class="post-meta">
-	      <span class="info">36분 전 · ckdrjs2</span>
+	      <span class="info" th:text="'1분 전 · ' + ${free.user_id}">36분 전 · ckdrjs2</span>
 	    </div>
 	  </li>
 	
-	  <li class="post-item" data-id="2">
+	  <!-- <li class="post-item" data-id="2">
 	    <div class="post-title">
 	      <strong>다이어트 11일차</strong>
 	      <span class="new-label">N</span>
@@ -75,16 +75,16 @@
 	    <div class="post-meta">
 	      <span class="info">6시간 전 · siiii0@kakao.com</span>
 	    </div>
-	  </li>
+	  </li> -->
 	</ul>
 
-    <div class="pagination">
+<!--     <div class="pagination">
       <a href="#">Prev</a>
       <a href="#" class="active">1</a>
       <a href="#">2</a>
       <a href="#">3</a>
       <a href="#">Next</a>
-    </div>
+    </div> -->
   </main>
 
   <div th:replace="fragments/footer :: footer"></div>

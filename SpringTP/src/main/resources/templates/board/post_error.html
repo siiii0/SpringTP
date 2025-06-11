@@ -15,19 +15,18 @@
 	<nav th:replace="fragments/nav :: nav"></nav>
 
 	<main class="post-container">
-		<h2 class="page-title">자유게시판</h2>
+		<h2 class="page-title">문제 오류</h2>
 
 		<section class="post-box">
 			<div class="post-header">
 				<div class="author-info">
 					<img src="/images/profile01.png" alt="프로필" class="profile-img">
-					<strong class="post-author" th:text="${oneBoard.user_id}">작성자</strong>
+					<strong class="post-author">돌인철</strong>
 				</div>
 				<div class="post-meta-right">
 					<i class="fa-solid fa-triangle-exclamation report-icon" title="신고"></i>
-					<span class="post-date" th:text="${#temporals.format(oneBoard.created_at, 'yyyy-MM-dd')}">2025-06-05</span>
-					<span class="post-views">조회수 <span
-						th:text="${oneBoard.b_views}">0</span></span>
+					<span class="post-date">2025-06-11</span> <span class="post-views">조회수
+						0</span>
 				</div>
 			</div>
 
@@ -39,10 +38,12 @@
 				</div>
 			</div>
 
-			<h3 class="post-title" th:text="${oneBoard.b_title}">제목</h3>
+			<h3 class="post-title">입력 조건 설명이 빠졌습니다.</h3>
 			<hr class="title-divider">
 
-			<div class="post-content" th:utext="${oneBoard.b_content}">본문 내용</div>
+			<div class="post-content">
+				<p>문제에 year 변수가 4자리 수라고 적혀있지 않아서 오해의 소지가 있습니다.</p>
+			</div>
 		</section>
 
 		<div class="comment-box">
@@ -79,7 +80,7 @@
 
 
 		<div class="list-button-wrap">
-			<a href="/board/free" class="list-btn">목록</a>
+			<a href="/board/error" class="list-btn">목록</a>
 		</div>
 
 	</main>

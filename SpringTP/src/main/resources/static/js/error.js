@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     item.addEventListener("click", () => {
       const postId = item.getAttribute("data-id");
       if (postId) {
-        window.location.href = `/board/post?id=${postId}`;
+		window.location.href = `/board/error/view?id=${postId}`;
       }
     });
   });

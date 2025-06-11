@@ -81,14 +81,30 @@ public class RankingService {
         }
     }
 
-    // 개인 랭킹 조회 - 전체
+    // 개인 랭킹 조회 - 전체 (총 점수 높은 순)
     public Page<User> getUserRanking(Pageable pageable) {
+        logUserGrades(); // 디버깅용
+        logger.info("전체 사용자 랭킹 조회 - 총 점수 높은 순으로 정렬");
         return userRepository.findAllUsersByScoreDesc(pageable);
     }
 
-    // 특정 등급의 사용자 랭킹 조회
+    // 특정 등급의 사용자 랭킹 조회 (총 점수 높은 순)
     public Page<User> getUserRankingByGrade(String grade, Pageable pageable) {
+        logUserGrades(); // 디버깅용
+        logger.info("특정 등급 사용자 랭킹 조회: " + grade + " - 총 점수 높은 순으로 정렬");
         return userRepository.findUsersByGrade(grade, pageable);
+    }
+    
+    // 디버깅: 모든 사용자의 등급 정보 출력
+    private void logUserGrades() {
+        List<Object[]> userGrades = userRepository.findAllUsersWithGrades();
+        logger.info("===== 사용자 등급 정보 =====");
+        for (Object[] userInfo : userGrades) {
+            String userId = (String) userInfo[0];
+            String grade = (String) userInfo[1];
+            logger.info("사용자 ID: " + userId + ", 등급: " + (grade != null ? grade : "null"));
+        }
+        logger.info("=========================");
     }
 
     // 소속별 랭킹 조회

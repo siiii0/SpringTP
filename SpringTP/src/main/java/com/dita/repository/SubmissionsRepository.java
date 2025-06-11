@@ -1,10 +1,11 @@
 package com.dita.repository;
 
-import com.dita.domain.Q_Language;
 import com.dita.domain.Question;
 import com.dita.domain.Submissions;
 import com.dita.domain.User;
+
 import com.dita.domain.User_id_type;
+
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SubmissionsRepository extends JpaRepository<Submissions, Integer> {
-    
+
     // 특정 사용자가 맞은 제출 내역 조회 - User 객체 직접 사용
     @Query("SELECT s FROM Submissions s WHERE s.user = :user AND s.s_isCorrect = 'Y'")
     List<Submissions> findCorrectSubmissionsByUser(@Param("user") User user);
@@ -55,4 +56,9 @@ public interface SubmissionsRepository extends JpaRepository<Submissions, Intege
     // 특정 사용자의 맞은 제출 수
     @Query("SELECT COUNT(s) FROM Submissions s WHERE s.user.idType.userId = :userId AND s.user.idType.userType = :userType AND s.s_isCorrect = 'Y'")
     long countCorrectSubmissionsByUserIdAndType(@Param("userId") String userId, @Param("userType") String userType);
+
+    // User 엔티티와 qId로 Submissions을 조회하는 메서드
+    List<Submissions> findByqIdAndUser(Question qId, User user); 
+
 }
+ 

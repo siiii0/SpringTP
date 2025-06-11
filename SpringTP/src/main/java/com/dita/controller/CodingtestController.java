@@ -17,8 +17,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dita.domain.Q_Language;
 import com.dita.domain.Question;
+import com.dita.domain.Submissions;
+import com.dita.domain.User;
+import com.dita.domain.User_id_type;
 import com.dita.repository.QLangRepository;
 import com.dita.repository.QuestionRepository;
+import com.dita.repository.SubmissionsRepository;
+import com.dita.security.UserSecurityDTO;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Controller
 @RequestMapping("/codingtest")
@@ -30,7 +38,9 @@ public class CodingtestController {
 	@Autowired
 	private QLangRepository qlangRepository;
 	
-
+	@Autowired
+	private SubmissionsRepository submissionsRepository;
+	
     // 기본문제 목록
     @GetMapping("/basic_Q")
     public String showBasicQuestions(
@@ -48,6 +58,7 @@ public class CodingtestController {
 
         return "codingtest/basic_Q";
     }
+	
 
     @GetMapping("/basic_Q/{id}")
     public String detailQuestion(@PathVariable("id") int id, Model model) {
@@ -72,14 +83,48 @@ public class CodingtestController {
         return "codingtest/user_Q";
     }
     
+ // 사용자 출제 문제 작성 폼 페이지
+    @GetMapping("/create_Q")
+    public String showCreateUserQuestionForm(Model model) {
+        return "codingtest/create_Q";
+    }
+    
     // 문제 풀이 페이지
     @GetMapping("/solve_Q")
     public String solveQuestion(@RequestParam("id") int id, Model model) {
         Optional<Question> question = questionRepository.findById(id);
-        List<Q_Language> languages = qlangRepository.findByqId(question.get());
+
+        // 현재 로그인한 사용자 정보 가져오기
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();  // principal은 로그인된 사용자 정보
+
+        List<Submissions> history = null;
+
+        if (principal instanceof UserSecurityDTO) {
+            // UserSecurityDTO에서 필요한 정보를 가져오기
+            UserSecurityDTO userDetails = (UserSecurityDTO) principal;
+
+            // UserSecurityDTO에서 정보를 추출하여 User 객체를 생성
+            User user = new User();
+            User_id_type userIdType = new User_id_type(userDetails.getUsername(), userDetails.getUserType());  // 복합키 설정
+            user.setIdType(userIdType);  // User_id_type을 User 객체에 설정
+            
+            // 이제 User 객체를 사용하여 Submissions 조회
+            history = submissionsRepository.findByqIdAndUser(question.get(), user);
+        } else {
+            // 인증되지 않은 사용자 처리
+            System.out.println("No authenticated user.");
+        }
+
         if (question.isPresent()) {
+            // 디버깅을 위한 로그 출력
+            System.out.println("question q_id: " + question.get().getQId());
+
             model.addAttribute("oneQuestion", question.get());
+            List<Q_Language> languages = qlangRepository.findByqId(question.get());
             model.addAttribute("languages", languages);
+            model.addAttribute("history", history);
+
             return "codingtest/solve_Q";
         } else {
             return "error/404";
