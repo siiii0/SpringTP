@@ -43,5 +43,9 @@ public interface UserRepository extends JpaRepository<User, User_id_type> {
     // 디버깅: 모든 사용자의 등급 출력
     @Query("SELECT u.idType.userId, u.userGrade FROM User u WHERE u.userWd = 'N'")
     List<Object[]> findAllUsersWithGrades();
+    
+    // 이메일로 사용자 아이디 찾기
+    @Query("SELECT u.idType.userId FROM User u WHERE u.userEmail = :email AND u.userWd = 'N'")
+    Optional<String> findUserIdByEmail(@Param("email") String email);
 }
 

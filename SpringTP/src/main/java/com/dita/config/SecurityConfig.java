@@ -85,7 +85,7 @@ public class SecurityConfig {
                     "/login", "/login-process", "/logout",
                     "/css/**", "/js/**", "/images/**",
                     "/api/user/current", // 사용자 API 접근 허용
-                    "/find-id", "/reset-password",
+                    "/find-id", "/reset-password", "/reset-password/**",
                     "/fragments/**", "/error"
                 ).permitAll()
                 // 그 외의 경로는 인증 필요

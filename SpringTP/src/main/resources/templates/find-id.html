@@ -1,0 +1,87 @@
+<!-- templates/find-id.html -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 찾기 - everyCODE</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <style>
+        /* 아이디 찾기 페이지 스타일 */
+        .login-box {
+            max-width: 500px;
+            margin: 80px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-box {
+            background-color: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .found-id {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 Fragment 삽입 -->
+        <header th:replace="fragments/header :: header"></header>
+        
+        <div class="login-box">
+            <h1 class="logo">아이디 찾기</h1>
+            
+            <!-- 에러 메시지 표시 -->
+            <div th:if="${error}" class="error-message" th:text="${error}"></div>
+            
+            <!-- 아이디를 찾은 경우 -->
+            <div th:if="${foundId}" class="result-box">
+                <p>회원님의 아이디는:</p>
+                <p class="found-id" th:text="${foundId}"></p>
+                <a href="/login" class="login-btn">로그인 하기</a>
+            </div>
+            
+            <!-- 아이디를 찾지 못한 경우 (foundId가 없는 경우) 폼 표시 -->
+            <form th:unless="${foundId}" action="/find-id" method="post">
+                <!-- CSRF 토큰 (SecurityConfig에서 CSRF 보호 활성화 시 필요) -->
+                <input type="hidden" name="_csrf" th:if="${_csrf != null}" th:value="${_csrf.token}" />
+                
+                <p>가입 시 등록한 이메일을 입력하시면 아이디를 찾을 수 있습니다.</p>
+                
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
+                
+                <button type="submit" class="login-btn">아이디 찾기</button>
+            </form>
+            
+            <div class="links">
+                <a href="/login">로그인</a>
+                <a href="/signup">회원가입</a>
+                <a href="/reset-password">비밀번호 찾기</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>2025©everyCODE</p>
+        </footer>
+    </div>
+</body>
+</html> 
