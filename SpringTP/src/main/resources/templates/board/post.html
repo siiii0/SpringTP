@@ -21,13 +21,13 @@
 			<div class="post-header">
 				<div class="author-info">
 					<img src="/images/profile01.png" alt="프로필" class="profile-img">
-					<strong class="post-author" th:text="${post.author}">작성자</strong>
+					<strong class="post-author" th:text="${oneBoard.user_id}">작성자</strong>
 				</div>
 				<div class="post-meta-right">
 					<i class="fa-solid fa-triangle-exclamation report-icon" title="신고"></i>
-					<span class="post-date" th:text="${post.createdAt}">2025-06-05</span>
+					<span class="post-date" th:text="${#temporals.format(oneBoard.created_at, 'yyyy-MM-dd')}">2025-06-05</span>
 					<span class="post-views">조회수 <span
-						th:text="${post.viewCount}">0</span></span>
+						th:text="${oneBoard.b_views}">0</span></span>
 				</div>
 			</div>
 
@@ -39,10 +39,10 @@
 				</div>
 			</div>
 
-			<h3 class="post-title" th:text="${post.title}">제목</h3>
+			<h3 class="post-title" th:text="${oneBoard.b_title}">제목</h3>
 			<hr class="title-divider">
 
-			<div class="post-content" th:utext="${post.content}">본문 내용</div>
+			<div class="post-content" th:utext="${oneBoard.b_content}">본문 내용</div>
 		</section>
 
 		<div class="comment-box">
@@ -52,18 +52,19 @@
 
 		<!-- 댓글 예시 -->
 <div class="comment-list">
-  <div class="comment">
-    <div class="comment-header">
-      <div class="comment-author-info">
-        <img src="/images/profile01.png" alt="프로필" class="comment-profile-img">
-        <strong class="comment-author">돌인철</strong>
-      </div>
-      <span class="comment-time">5분 전</span>
+	<div th:if="${oneBoardCMT != null}">
+        <div th:each="comment : ${oneBoardCMT}" class="comment">
+            <div class="comment-header">
+                <div class="comment-author-info">
+                    <img src="/images/profile01.png" alt="프로필" class="comment-profile-img">
+                    <strong class="comment-author" th:text="${comment.user_id}">돌인철</strong>
+                </div>
+                <span class="comment-time">1분 전</span>
+            </div>
+            <p class="comment-content" th:text="${comment.bc_content}">덕분에 문제 해결했습니다. 감사합니다!</p>
+        </div>
     </div>
-    <p class="comment-content">덕분에 문제 해결했습니다. 감사합니다!</p>
-  </div>
-
-  <div class="comment">
+<!--   <div class="comment">
     <div class="comment-header">
       <div class="comment-author-info">
         <img src="/images/profile02.png" alt="프로필" class="comment-profile-img">
@@ -72,7 +73,7 @@
       <span class="comment-time">12분 전</span>
     </div>
     <p class="comment-content">4 * 10^14 힌트 감사합니다!</p>
-  </div>
+  </div> -->
 </div>
 
 
