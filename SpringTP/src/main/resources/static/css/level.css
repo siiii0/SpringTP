@@ -52,19 +52,48 @@ body {
   margin: 40px 0;
 }
 
-.pagination a {
+.pagination ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  gap: 5px;
+}
+
+.pagination li {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.pagination a, .pagination span {
   padding: 6px 12px;
   color: #222;
   text-decoration: none;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  display: block;
   font-size: 14px;
 }
 
-.pagination a.active {
+.pagination li.active {
   background-color: #222;
+}
+
+.pagination li.active a {
   color: white;
   font-weight: bold;
+}
+
+.pagination li.disabled {
+  border-color: #eee;
+  cursor: not-allowed;
+}
+
+.pagination li.disabled span {
+  color: #ccc;
+}
+
+.pagination li.ellipsis {
+  border: none;
+  padding: 4px 0;
 }
 
 footer {
