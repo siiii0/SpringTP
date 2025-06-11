@@ -74,17 +74,21 @@
 
     <!-- 페이지네이션 버튼 -->
 <div class="pagination">
-    <!-- 이전 버튼 -->
-    <button th:if="${currentPage > 1}" 
-            th:onclick="'location.href=\'/codingtest/basic_Q?page=' + (${currentPage} - 1) + '\''">이전</button>
+  <!-- 이전 버튼 -->
+  <a th:if="${currentPage > 1}" 
+     th:href="@{/codingtest/basic_Q(page=${currentPage - 1})}">Prev</a>
 
-    <!-- 페이지 텍스트 -->
-    <span th:text="'현재 페이지: ' + ${currentPage} + ' / ' + ${totalPages}"></span>
+  <!-- 페이지 숫자 목록 -->
+  <a th:each="i : ${#numbers.sequence(1, totalPages)}"
+     th:href="@{/codingtest/basic_Q(page=${i})}"
+     th:text="${i}"
+     th:classappend="${i == currentPage} ? 'active'">1</a>
 
-    <!-- 다음 버튼 -->
-    <button th:if="${currentPage < totalPages}" 
-            th:onclick="'location.href=\'/codingtest/basic_Q?page=' + (${currentPage} + 1) + '\''">다음</button>
+  <!-- 다음 버튼 -->
+  <a th:if="${currentPage < totalPages}" 
+     th:href="@{/codingtest/basic_Q(page=${currentPage + 1})}">Next</a>
 </div>
+
 
 
     

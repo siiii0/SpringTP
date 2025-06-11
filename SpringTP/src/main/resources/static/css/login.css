@@ -59,6 +59,17 @@ input[type="password"] {
     margin-bottom: 10px;
 }
 
+.links a {
+    color: #015FC1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.links a:hover {
+    color: #016ad3;
+    text-decoration: underline;
+}
+
 .login-btn {
     margin-top: 30px;
     padding: 14px 0;

@@ -118,6 +118,32 @@ body {
   background-color: #f5f7fa;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px 0;
+}
+
+.pagination a,
+.pagination button {
+  padding: 6px 12px;
+  color: #222;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.pagination a.active,
+.pagination button.active {
+  background-color: #222;
+  color: white;
+  font-weight: bold;
+}
+
 footer {
   text-align: center;
   padding: 24px 0;
